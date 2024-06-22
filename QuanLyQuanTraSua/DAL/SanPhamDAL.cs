@@ -8,7 +8,7 @@ namespace DAL
 {
     public class SanPhamDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-RI07F7I\MSSQLSERVER01;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
         public DataTable getProduct(string MaDanhMuc)
         {
             string query = @"SELECT sp.MaSanPham, sp.TenSanPham, sp.Size, sp.DonGia, dm.TenDanhMuc AS LoaiSanPham, sp.HinhAnh FROM SANPHAM sp INNER JOIN DANHMUCSANPHAM dm ON sp.MaDanhMuc = dm.MaDanhMuc

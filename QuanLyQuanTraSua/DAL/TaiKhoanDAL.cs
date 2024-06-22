@@ -8,7 +8,7 @@ namespace DAL
 {
     public class TaiKhoanDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-RI07F7I\MSSQLSERVER01;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
 
         public DataTable getAllUser()
         {
