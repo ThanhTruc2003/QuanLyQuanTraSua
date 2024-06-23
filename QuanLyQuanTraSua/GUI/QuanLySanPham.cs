@@ -216,6 +216,7 @@ namespace QuanLyQuanTraSua.GUI
                         txbSize.Clear();
                         txbDonGia.Clear();
                         pBHinhAnh.Image = null;
+                        cbLoaiSanPham.SelectedIndex = -1;
                     }
                     else
                     {
@@ -246,6 +247,7 @@ namespace QuanLyQuanTraSua.GUI
                 txbSize.Clear();
                 txbDonGia.Clear();
                 pBHinhAnh.Image = null;
+                cbLoaiSanPham.SelectedIndex = -1;
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -313,6 +315,12 @@ namespace QuanLyQuanTraSua.GUI
                     MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     File.Copy(sourceFilePath, destinationPath);
                     LoadAllProducts();
+                    txbMaSanPham.Clear();
+                    txbTenSanPham.Clear();
+                    txbSize.Clear();
+                    txbDonGia.Clear();
+                    pBHinhAnh.Image = null;
+                    cbLoaiSanPham.SelectedIndex = -1;
                 }
                 else
                 {

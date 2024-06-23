@@ -23,11 +23,6 @@ namespace BLL
             return dal.getUser(MaQuyen);
         }
 
-        public DataTable getDataByName(string TenNhanVien)
-        {
-            return dal.getDataByName(TenNhanVien);
-        }
-
         public DataTable getMaNhanVien()
         {
             return dal.getMaNhanVien();
@@ -38,15 +33,15 @@ namespace BLL
             return dal.Insert(dto_taikhoan);
         }
 
-        public bool Delete(string MaNhanVien)
+        public bool Delete(string MaTaiKhoan)
         {
-            return dal.Delete(MaNhanVien);
+            return dal.Delete(MaTaiKhoan);
         }
 
-       /* public bool Update(NhanVienDTO dto_nhanvien)
+        public bool Update(TaiKhoanDTO dto_taikhoan)
         {
             return dal.Update(dto_taikhoan);
-        }*/
+        }
 
         public void CloseConnection()
         {

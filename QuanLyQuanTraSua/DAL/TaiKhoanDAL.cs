@@ -41,20 +41,10 @@ namespace DAL
             return table;
         }
 
-        public DataTable getDataByName(string TenNhanVien)
-        {
-            string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
-                             WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen AND nv.HoTen LIKE @TenNhanVien ORDER BY CAST(tk.MaTaiKhoan AS INT) ASC";
-            SqlDataAdapter ada = new SqlDataAdapter(query, conn);
-            ada.SelectCommand.Parameters.AddWithValue("@TenNhanVien", "%" + TenNhanVien + "%");
-            DataTable table = new DataTable();
-            ada.Fill(table);
-            return table;
-        }
-
         public DataTable getMaNhanVien()
         {
-            string query = "SELECT MaNhanVien FROM NHANVIEN";
+            string query = "SELECT nv.MaNhanVien FROM NHANVIEN nv LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien " +
+                           " WHERE tk.MaNhanVien IS NULL";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);
@@ -92,10 +82,10 @@ namespace DAL
             return true;
         }
 
-        public bool Delete(string MaDanhMuc)
+        public bool Delete(string MaTaiKhoan)
         {
-            string sb = string.Format(@"Delete from DANHMUCSANPHAM
-                                     where MaDanhMuc = '{0}'", MaDanhMuc);
+            string sb = string.Format(@"Delete from TAIKHOAN
+                                     where MaTaiKhoan = '{0}'", MaTaiKhoan);
             SqlCommand cmd = new SqlCommand(sb, conn);
             try
             {
@@ -117,31 +107,37 @@ namespace DAL
             return true;
         }
 
-        public bool Update(DanhMucSanPhamDTO dto_danhmucsanpham)
+        public bool Update(TaiKhoanDTO dto_taikhoan)
         {
-            string sb = string.Format(@"Update DANHMUCSANPHAM set  
-                                TenDanhMuc = N'{0}'
-                                where MaDanhMuc = '{1}'",
-                                dto_danhmucsanpham.TenDanhMuc, dto_danhmucsanpham.MaDanhMuc);
-            SqlCommand cmd = new SqlCommand(sb, conn);
-            try
+            string query = @"Update TAIKHOAN set  
+                     Username = @Username,
+                     Password = @Password,
+                     MaQuyen = @MaQuyen,
+                     MaNhanVien = @MaNhanVien
+                     where MaTaiKhoan = @MaTaiKhoan";
+
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                conn.Open();
-                if (cmd.ExecuteNonQuery() > 0)
+                cmd.Parameters.AddWithValue("@Username", dto_taikhoan.TaiKhoan);
+                cmd.Parameters.AddWithValue("@Password", dto_taikhoan.MatKhau);
+                cmd.Parameters.AddWithValue("@MaQuyen", dto_taikhoan.MaQuyen);
+                cmd.Parameters.AddWithValue("@MaNhanVien", dto_taikhoan.MaNhanVien);
+                cmd.Parameters.AddWithValue("@MaTaiKhoan", dto_taikhoan.MaTaiKhoan);
+
+                try
                 {
-                    return true;
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+                catch (SqlException ex1)
+                {
+                    throw ex1;
+                }
+                finally
+                {
+                    conn.Close();
                 }
             }
-            catch (SqlException ex1)
-            {
-
-                throw ex1;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return true;
         }
 
         public void CloseConnection()
