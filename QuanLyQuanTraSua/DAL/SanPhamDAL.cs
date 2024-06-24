@@ -49,7 +49,6 @@ namespace DAL
             return table;
         }
 
-
         public bool Insert(SanPhamDTO dto_sanpham)
         {
             string query = @"Insert into SANPHAM(MaSanPham, TenSanPham, Size, DonGia, MaDanhMuc, HinhAnh) 

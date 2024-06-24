@@ -10,6 +10,10 @@ namespace QuanLyQuanTraSua.GUI
 {
     public partial class FormGoiMon : Form
     {
+        private DanhMucSanPhamBLL danhmucSanPhambll;
+        private SanPhamBLL sanPhamBLL;
+        private ChiTietHoaDonBLL chiTietHoaDonBLL;
+
         public FormGoiMon()
         {
             InitializeComponent();
@@ -17,7 +21,7 @@ namespace QuanLyQuanTraSua.GUI
 
         private void FormGoiMon_Load(object sender, EventArgs e)
         {
-            DanhMucSanPhamBLL danhmucSanPhambll = new DanhMucSanPhamBLL();
+            danhmucSanPhambll = new DanhMucSanPhamBLL();
             var cb_dt = danhmucSanPhambll.getData();
             DataRow newRow = cb_dt.NewRow();
             newRow["MaDanhMuc"] = "";
@@ -32,7 +36,7 @@ namespace QuanLyQuanTraSua.GUI
 
         private void LoadProducts(string maDanhMuc)
         {
-            SanPhamBLL sanPhamBLL = new SanPhamBLL();
+            sanPhamBLL = new SanPhamBLL();
             DataTable SP;
             if (maDanhMuc == "")
             {
@@ -69,6 +73,17 @@ namespace QuanLyQuanTraSua.GUI
             {
                 Panel MouseLeavePanel = sender as Panel;
                 MouseLeavePanel.BackColor = Color.Snow;
+            };
+
+            panel.Click += (sender, e) =>
+            {
+                string productName = product["TenSanPham"].ToString();
+                string price = product["DonGia"].ToString();
+                string size = product["Size"].ToString();
+
+                txbTenMon1.Text = productName;
+                txbDonGia.Text = price + ' ' + 'đ';
+                txbSize.Text = size;
             };
 
             PictureBox pictureBox = new PictureBox();
@@ -138,6 +153,16 @@ namespace QuanLyQuanTraSua.GUI
                     }
                 }
             }
+        }
+
+        private void btThemMon_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btXoaMon_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
