@@ -50,8 +50,10 @@ namespace QuanLyQuanTraSua
                 if (checkDangNhap)
                 {
                     MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FormTrangChu Home = new FormTrangChu();
-                    Home.Show();
+                    FormTrangChu Home = new FormTrangChu(this);
+                    Home.FormClosed += Home_FormClosed;
+
+					Home.Show();
                     this.Hide();
                 }
                 else
@@ -70,5 +72,10 @@ namespace QuanLyQuanTraSua
                 Application.Exit();
             }
         }
-    }
+
+		private void Home_FormClosed(object sender, FormClosedEventArgs e)
+		{
+            this.Dispose();
+		}
+	}
 }
