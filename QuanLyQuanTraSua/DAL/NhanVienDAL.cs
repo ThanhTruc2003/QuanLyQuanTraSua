@@ -12,9 +12,8 @@ namespace DAL
 		private SqlConnection conn = ConnectDB.GetConnection();
 		public DataTable getAllEmployee()
         {
-            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, cv.TenChucVu
-                             FROM NHANVIEN nv, CHUCVU cv
-                             WHERE nv.ChucVu = cv.MaChucVu
+            string query = @"SELECT *
+                             FROM NHANVIEN nv
                              ORDER BY CAST(nv.MaNhanVien AS INT) ASC";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
@@ -24,9 +23,9 @@ namespace DAL
 
         public DataTable getDataByName(string TenNhanVien)
         {
-            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, cv.TenChucVu
-                             FROM NHANVIEN nv, CHUCVU cv
-                             WHERE  nv.ChucVu = cv.MaChucVu AND nv.HoTen LIKE @TenNhanVien ORDER BY CAST(nv.MaNhanVien AS INT) ASC";
+            string query = @"SELECT *
+                             FROM NHANVIEN nv
+                             WHERE nv.HoTen LIKE @TenNhanVien ORDER BY CAST(nv.MaNhanVien AS INT) ASC";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             ada.SelectCommand.Parameters.AddWithValue("@TenNhanVien", "%" + TenNhanVien + "%");
             DataTable table = new DataTable();
@@ -34,19 +33,10 @@ namespace DAL
             return table;
         }
 
-        public DataTable getChucVu()
-        {
-            string query = "SELECT MaChucVu, TenChucVu FROM CHUCVU";
-            SqlDataAdapter ada = new SqlDataAdapter(query, conn);
-            DataTable table = new DataTable();
-            ada.Fill(table);
-            return table;
-        }
-
         public bool Insert(NhanVienDTO dto_nhanvien)
         {
-            string sql = @"INSERT INTO NHANVIEN (MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai, ChucVu)
-                   VALUES (@MaNhanVien, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @ChucVu)";
+            string sql = @"INSERT INTO NHANVIEN (MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai)
+                   VALUES (@MaNhanVien, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai)";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@MaNhanVien", dto_nhanvien.MaNhanVien);
@@ -54,7 +44,6 @@ namespace DAL
             cmd.Parameters.AddWithValue("@NgaySinh", dto_nhanvien.NgaySinh);
             cmd.Parameters.AddWithValue("@GioiTinh", dto_nhanvien.GioiTinh);
             cmd.Parameters.AddWithValue("@SoDienThoai", dto_nhanvien.SoDienThoai);
-            cmd.Parameters.AddWithValue("@ChucVu", dto_nhanvien.ChucVu);
             try
             {
                 conn.Open();
@@ -106,8 +95,7 @@ namespace DAL
                      HoTen = @HoTen,
                      NgaySinh = @NgaySinh,
                      GioiTinh = @GioiTinh,
-                     SoDienThoai = @SoDienThoai,
-                     ChucVu = @ChucVu
+                     SoDienThoai = @SoDienThoai
                      where MaNhanVien = @MaNhanVien";
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -116,7 +104,6 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@NgaySinh", dto_nhanvien.NgaySinh);
                 cmd.Parameters.AddWithValue("@GioiTinh", dto_nhanvien.GioiTinh);
                 cmd.Parameters.AddWithValue("@SoDienThoai", dto_nhanvien.SoDienThoai);
-                cmd.Parameters.AddWithValue("@ChucVu", dto_nhanvien.ChucVu);
                 cmd.Parameters.AddWithValue("@MaNhanVien", dto_nhanvien.MaNhanVien);
 
                 try

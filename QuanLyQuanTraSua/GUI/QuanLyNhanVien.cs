@@ -21,12 +21,6 @@ namespace QuanLyQuanTraSua.GUI
         {
             nhanvienBLL = new NhanVienBLL();
             dgvNhanVien.DataSource = nhanvienBLL.getAllEmployee();
-
-            DataTable cb_dt = nhanvienBLL.getChucVu();
-            cbChucVu.DataSource = cb_dt;
-            cbChucVu.DisplayMember = "TenChucVu";
-            cbChucVu.ValueMember = "MaChucVu";
-            cbChucVu.SelectedIndex = -1;
         }
 
         private void txbTimKiemNV_TextChanged(object sender, EventArgs e)
@@ -50,11 +44,11 @@ namespace QuanLyQuanTraSua.GUI
         private void btThemNhanVien_Click(object sender, EventArgs e)
         {
             nhanvienBLL = new NhanVienBLL();
-            if (txbMaNhanVien.Text == "" && txbTenNhanVien.Text == "" && cbChucVu.Text == "" && txbSoDienThoai.Text == "" && !rbNam.Checked && !rbNu.Checked)
+            if (txbMaNhanVien.Text == "" && txbTenNhanVien.Text == "" && txbSoDienThoai.Text == "" && !rbNam.Checked && !rbNu.Checked)
             {
                 MessageBox.Show("Vui lòng nhập thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (txbMaNhanVien.Text == "" || txbTenNhanVien.Text == "" || cbChucVu.Text == "" || txbSoDienThoai.Text == "")
+            else if (txbMaNhanVien.Text == "" || txbTenNhanVien.Text == "" || txbSoDienThoai.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -76,7 +70,7 @@ namespace QuanLyQuanTraSua.GUI
                     {
                         gioiTinh = "Nữ";
                     }
-                    bool isSuccess = nhanvienBLL.Insert(new NhanVienDTO(txbMaNhanVien.Text, txbTenNhanVien.Text, dtpNgaySinh.Value, gioiTinh, txbSoDienThoai.Text, cbChucVu.SelectedValue.ToString()));
+                    bool isSuccess = nhanvienBLL.Insert(new NhanVienDTO(txbMaNhanVien.Text, txbTenNhanVien.Text, dtpNgaySinh.Value, gioiTinh, txbSoDienThoai.Text));
                     if (isSuccess)
                     {
                         MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,7 +79,6 @@ namespace QuanLyQuanTraSua.GUI
                         txbTenNhanVien.Clear();
                         txbSoDienThoai.Clear();
                         rbNam.Checked = false;
-                        rbNu.Checked = false;
                     }
                     else
                     {
@@ -152,17 +145,16 @@ namespace QuanLyQuanTraSua.GUI
                 rbNu.Checked = false;
             }
             txbSoDienThoai.Text = selected.Cells[4].Value.ToString();
-            cbChucVu.Text = selected.Cells[5].Value.ToString();
         }
 
         private void btSuaNhanVien_Click(object sender, EventArgs e)
         {
             nhanvienBLL = new NhanVienBLL();
-            if (txbMaNhanVien.Text == "" && txbTenNhanVien.Text == "" && cbChucVu.Text == "" && txbSoDienThoai.Text == "" && !rbNam.Checked && !rbNu.Checked)
+            if (txbMaNhanVien.Text == "" && txbTenNhanVien.Text == "" && txbSoDienThoai.Text == "" && !rbNam.Checked && !rbNu.Checked)
             {
                 MessageBox.Show("Vui lòng nhập thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (txbMaNhanVien.Text == "" || txbTenNhanVien.Text == "" || cbChucVu.Text == "" || txbSoDienThoai.Text == "")
+            else if (txbMaNhanVien.Text == "" || txbTenNhanVien.Text == "" || txbSoDienThoai.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -178,11 +170,16 @@ namespace QuanLyQuanTraSua.GUI
                 {
                     gioiTinh = "Nữ";
                 }
-                bool isSuccess = nhanvienBLL.Update(new NhanVienDTO(txbMaNhanVien.Text, txbTenNhanVien.Text, dtpNgaySinh.Value, gioiTinh, txbSoDienThoai.Text, cbChucVu.SelectedValue.ToString()));
+                bool isSuccess = nhanvienBLL.Update(new NhanVienDTO(txbMaNhanVien.Text, txbTenNhanVien.Text, dtpNgaySinh.Value, gioiTinh, txbSoDienThoai.Text));
                 if (isSuccess == true)
                 {
                     MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dgvNhanVien.DataSource = nhanvienBLL.getAllEmployee();
+                    txbMaNhanVien.Clear();
+                    txbTenNhanVien.Clear();
+                    txbSoDienThoai.Clear();
+                    rbNam.Checked = false;
+                    rbNu.Checked = false;
                 }
                 else
                 {

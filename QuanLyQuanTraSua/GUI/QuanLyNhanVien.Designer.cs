@@ -29,23 +29,16 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLyNhanVien));
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLyNhanVien));
             lbDanhSachNV = new Label();
             lbTimKiemNV = new Label();
             txbTimKiemNV = new TextBox();
             dgvNhanVien = new DataGridView();
-            MaNhanVien = new DataGridViewTextBoxColumn();
-            HoTen = new DataGridViewTextBoxColumn();
-            NgaySinh = new DataGridViewTextBoxColumn();
-            GioiTinh = new DataGridViewTextBoxColumn();
-            SoDienThoai = new DataGridViewTextBoxColumn();
-            ChucVu = new DataGridViewTextBoxColumn();
             lbThongTinNV = new Label();
             btThemNhanVien = new Button();
             btSuaNhanVien = new Button();
@@ -58,12 +51,15 @@
             txbSoDienThoai = new TextBox();
             lbGioiTinh = new Label();
             lbNgaySinh = new Label();
-            cbChucVu = new ComboBox();
-            lbChucVu = new Label();
             txbTenNhanVien = new TextBox();
             lbTenNhanVien = new Label();
             txbMaNhanVien = new TextBox();
             lbMaNhanVien = new Label();
+            MaNhanVien = new DataGridViewTextBoxColumn();
+            HoTen = new DataGridViewTextBoxColumn();
+            NgaySinh = new DataGridViewTextBoxColumn();
+            GioiTinh = new DataGridViewTextBoxColumn();
+            SoDienThoai = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
             PanelThongTinNV.SuspendLayout();
             SuspendLayout();
@@ -110,7 +106,7 @@
             dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvNhanVien.ColumnHeadersHeight = 29;
             dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvNhanVien.Columns.AddRange(new DataGridViewColumn[] { MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai, ChucVu });
+            dgvNhanVien.Columns.AddRange(new DataGridViewColumn[] { MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai });
             dgvNhanVien.EnableHeadersVisualStyles = false;
             dgvNhanVien.Location = new Point(12, 90);
             dgvNhanVien.Name = "dgvNhanVien";
@@ -119,63 +115,6 @@
             dgvNhanVien.Size = new Size(1238, 155);
             dgvNhanVien.TabIndex = 5;
             dgvNhanVien.CellClick += dgvNhanVien_CellClick;
-            // 
-            // MaNhanVien
-            // 
-            MaNhanVien.DataPropertyName = "MaNhanVien";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            MaNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
-            MaNhanVien.HeaderText = "Mã nhân viên";
-            MaNhanVien.MinimumWidth = 6;
-            MaNhanVien.Name = "MaNhanVien";
-            // 
-            // HoTen
-            // 
-            HoTen.DataPropertyName = "HoTen";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HoTen.DefaultCellStyle = dataGridViewCellStyle3;
-            HoTen.HeaderText = "Họ tên nhân viên";
-            HoTen.MinimumWidth = 6;
-            HoTen.Name = "HoTen";
-            // 
-            // NgaySinh
-            // 
-            NgaySinh.DataPropertyName = "NgaySinh";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            NgaySinh.DefaultCellStyle = dataGridViewCellStyle4;
-            NgaySinh.HeaderText = "Ngày sinh";
-            NgaySinh.MinimumWidth = 6;
-            NgaySinh.Name = "NgaySinh";
-            // 
-            // GioiTinh
-            // 
-            GioiTinh.DataPropertyName = "GioiTinh";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            GioiTinh.DefaultCellStyle = dataGridViewCellStyle5;
-            GioiTinh.HeaderText = "Giới tính";
-            GioiTinh.MinimumWidth = 6;
-            GioiTinh.Name = "GioiTinh";
-            GioiTinh.Resizable = DataGridViewTriState.True;
-            // 
-            // SoDienThoai
-            // 
-            SoDienThoai.DataPropertyName = "SoDienThoai";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            SoDienThoai.DefaultCellStyle = dataGridViewCellStyle6;
-            SoDienThoai.HeaderText = "Số điện thoại";
-            SoDienThoai.MinimumWidth = 6;
-            SoDienThoai.Name = "SoDienThoai";
-            // 
-            // ChucVu
-            // 
-            ChucVu.DataPropertyName = "TenChucVu";
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            ChucVu.DefaultCellStyle = dataGridViewCellStyle7;
-            ChucVu.HeaderText = "Chức vụ";
-            ChucVu.MinimumWidth = 6;
-            ChucVu.Name = "ChucVu";
             // 
             // lbThongTinNV
             // 
@@ -240,8 +179,6 @@
             PanelThongTinNV.Controls.Add(txbSoDienThoai);
             PanelThongTinNV.Controls.Add(lbGioiTinh);
             PanelThongTinNV.Controls.Add(lbNgaySinh);
-            PanelThongTinNV.Controls.Add(cbChucVu);
-            PanelThongTinNV.Controls.Add(lbChucVu);
             PanelThongTinNV.Controls.Add(txbTenNhanVien);
             PanelThongTinNV.Controls.Add(lbTenNhanVien);
             PanelThongTinNV.Controls.Add(txbMaNhanVien);
@@ -255,7 +192,7 @@
             // 
             lbSoDienThoai.AutoSize = true;
             lbSoDienThoai.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lbSoDienThoai.Location = new Point(744, 162);
+            lbSoDienThoai.Location = new Point(744, 126);
             lbSoDienThoai.Name = "lbSoDienThoai";
             lbSoDienThoai.Size = new Size(115, 23);
             lbSoDienThoai.TabIndex = 22;
@@ -265,7 +202,7 @@
             // 
             rbNu.AutoSize = true;
             rbNu.Cursor = Cursors.Hand;
-            rbNu.Location = new Point(954, 95);
+            rbNu.Location = new Point(315, 162);
             rbNu.Name = "rbNu";
             rbNu.Size = new Size(50, 24);
             rbNu.TabIndex = 21;
@@ -277,7 +214,7 @@
             // 
             rbNam.AutoSize = true;
             rbNam.Cursor = Cursors.Hand;
-            rbNam.Location = new Point(865, 95);
+            rbNam.Location = new Point(205, 162);
             rbNam.Name = "rbNam";
             rbNam.Size = new Size(62, 24);
             rbNam.TabIndex = 20;
@@ -290,14 +227,14 @@
             dtpNgaySinh.Cursor = Cursors.Hand;
             dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
             dtpNgaySinh.Format = DateTimePickerFormat.Custom;
-            dtpNgaySinh.Location = new Point(865, 24);
+            dtpNgaySinh.Location = new Point(865, 57);
             dtpNgaySinh.Name = "dtpNgaySinh";
             dtpNgaySinh.Size = new Size(312, 27);
             dtpNgaySinh.TabIndex = 19;
             // 
             // txbSoDienThoai
             // 
-            txbSoDienThoai.Location = new Point(865, 157);
+            txbSoDienThoai.Location = new Point(865, 122);
             txbSoDienThoai.Name = "txbSoDienThoai";
             txbSoDienThoai.Size = new Size(312, 27);
             txbSoDienThoai.TabIndex = 18;
@@ -306,7 +243,7 @@
             // 
             lbGioiTinh.AutoSize = true;
             lbGioiTinh.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lbGioiTinh.Location = new Point(744, 96);
+            lbGioiTinh.Location = new Point(51, 162);
             lbGioiTinh.Name = "lbGioiTinh";
             lbGioiTinh.Size = new Size(79, 23);
             lbGioiTinh.TabIndex = 16;
@@ -316,30 +253,11 @@
             // 
             lbNgaySinh.AutoSize = true;
             lbNgaySinh.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lbNgaySinh.Location = new Point(744, 30);
+            lbNgaySinh.Location = new Point(744, 61);
             lbNgaySinh.Name = "lbNgaySinh";
             lbNgaySinh.Size = new Size(91, 23);
             lbNgaySinh.TabIndex = 14;
             lbNgaySinh.Text = "Ngày sinh:";
-            // 
-            // cbChucVu
-            // 
-            cbChucVu.Cursor = Cursors.Hand;
-            cbChucVu.FormattingEnabled = true;
-            cbChucVu.Location = new Point(205, 157);
-            cbChucVu.Name = "cbChucVu";
-            cbChucVu.Size = new Size(312, 28);
-            cbChucVu.TabIndex = 10;
-            // 
-            // lbChucVu
-            // 
-            lbChucVu.AutoSize = true;
-            lbChucVu.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lbChucVu.Location = new Point(51, 162);
-            lbChucVu.Name = "lbChucVu";
-            lbChucVu.Size = new Size(78, 23);
-            lbChucVu.TabIndex = 13;
-            lbChucVu.Text = "Chức vụ:";
             // 
             // txbTenNhanVien
             // 
@@ -374,6 +292,54 @@
             lbMaNhanVien.Size = new Size(120, 23);
             lbMaNhanVien.TabIndex = 10;
             lbMaNhanVien.Text = "Mã nhân viên:";
+            // 
+            // MaNhanVien
+            // 
+            MaNhanVien.DataPropertyName = "MaNhanVien";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            MaNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
+            MaNhanVien.HeaderText = "Mã nhân viên";
+            MaNhanVien.MinimumWidth = 6;
+            MaNhanVien.Name = "MaNhanVien";
+            // 
+            // HoTen
+            // 
+            HoTen.DataPropertyName = "HoTen";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HoTen.DefaultCellStyle = dataGridViewCellStyle3;
+            HoTen.HeaderText = "Họ tên nhân viên";
+            HoTen.MinimumWidth = 6;
+            HoTen.Name = "HoTen";
+            // 
+            // NgaySinh
+            // 
+            NgaySinh.DataPropertyName = "NgaySinh";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.NullValue = null;
+            NgaySinh.DefaultCellStyle = dataGridViewCellStyle4;
+            NgaySinh.HeaderText = "Ngày sinh";
+            NgaySinh.MinimumWidth = 6;
+            NgaySinh.Name = "NgaySinh";
+            // 
+            // GioiTinh
+            // 
+            GioiTinh.DataPropertyName = "GioiTinh";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            GioiTinh.DefaultCellStyle = dataGridViewCellStyle5;
+            GioiTinh.HeaderText = "Giới tính";
+            GioiTinh.MinimumWidth = 6;
+            GioiTinh.Name = "GioiTinh";
+            GioiTinh.Resizable = DataGridViewTriState.True;
+            // 
+            // SoDienThoai
+            // 
+            SoDienThoai.DataPropertyName = "SoDienThoai";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            SoDienThoai.DefaultCellStyle = dataGridViewCellStyle6;
+            SoDienThoai.HeaderText = "Số điện thoại";
+            SoDienThoai.MinimumWidth = 6;
+            SoDienThoai.Name = "SoDienThoai";
             // 
             // FormQuanLyNhanVien
             // 
@@ -417,8 +383,6 @@
         private TextBox txbSoDienThoai;
         private Label lbGioiTinh;
         private Label lbNgaySinh;
-        private ComboBox cbChucVu;
-        private Label lbChucVu;
         private TextBox txbTenNhanVien;
         private Label lbTenNhanVien;
         private TextBox txbMaNhanVien;
@@ -432,6 +396,5 @@
         private DataGridViewTextBoxColumn NgaySinh;
         private DataGridViewTextBoxColumn GioiTinh;
         private DataGridViewTextBoxColumn SoDienThoai;
-        private DataGridViewTextBoxColumn ChucVu;
     }
 }

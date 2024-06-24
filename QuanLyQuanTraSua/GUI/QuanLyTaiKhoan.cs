@@ -4,6 +4,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace QuanLyQuanTraSua.GUI
 
         private void FormQuanLyTaiKhoan_Load(object sender, EventArgs e)
         {
+            
+            
             taikhoanBLL = new TaiKhoanBLL();
             dgvTaiKhoan.DataSource = taikhoanBLL.getAllUser();
 
@@ -38,12 +41,17 @@ namespace QuanLyQuanTraSua.GUI
             cbLoaiTaiKhoan.ValueMember = "MaQuyen";
             cbLoaiTaiKhoan.SelectedIndex = -1;
 
+            LoadNhanVienChuaCoTaiKhoan();
+
+            LoadUser("");
+        }
+
+        private void LoadNhanVienChuaCoTaiKhoan()
+        {
             DataTable cbMaNhanVien_dt = taikhoanBLL.getMaNhanVien();
             cbMaNhanVien.DataSource = cbMaNhanVien_dt;
             cbMaNhanVien.ValueMember = "MaNhanVien";
             cbMaNhanVien.SelectedIndex = -1;
-
-            LoadUser("");
         }
 
         private void LoadUser(string MaQuyen)
@@ -74,28 +82,13 @@ namespace QuanLyQuanTraSua.GUI
             }
         }
 
-        private void txbTimKiemTK_TextChanged(object sender, EventArgs e)
-        {
-            taikhoanBLL = new TaiKhoanBLL();
-            string tenNhanVien = txbTimKiemTK.Text;
-            dgvTaiKhoan.DataSource = taikhoanBLL.getDataByName(tenNhanVien);
-        }
-
-        private bool IsTaiKhoanAndNhanVienExistInDataGridView(string MaTaiKhoan, string MaNhanVien)
+        private bool IsTaiKhoanExistInDataGridView(string MaTaiKhoan)
         {
             foreach (DataGridViewRow row in dgvTaiKhoan.Rows)
             {
-                if (row.Cells["MaTaiKhoan"].Value != null)
+                if (row.Cells["MaTaiKhoan"].Value != null && row.Cells["MaTaiKhoan"].Value.ToString().Trim() == MaTaiKhoan)
                 {
-                    var maNhanVienCell = row.Cells["MaNhanVien"] as DataGridViewComboBoxCell;
-
-                    if (maNhanVienCell != null && row.Cells["MaTaiKhoan"].Value.ToString().Trim() == MaTaiKhoan)
-                    {
-                        if (maNhanVienCell.Value != null && maNhanVienCell.Value.ToString().Trim() == MaNhanVien)
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
                 }
             }
             return false;
@@ -114,9 +107,9 @@ namespace QuanLyQuanTraSua.GUI
             }
             else
             {
-                if (IsTaiKhoanAndNhanVienExistInDataGridView(txbMaTaiKhoan.Text, cbMaNhanVien.SelectedValue.ToString()))
+                if (IsTaiKhoanExistInDataGridView(txbMaTaiKhoan.Text))
                 {
-                    MessageBox.Show("Tài khoản đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Mã tài khoản đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -128,12 +121,87 @@ namespace QuanLyQuanTraSua.GUI
                         txbMaTaiKhoan.Clear();
                         txbTaiKhoan.Clear();
                         txbMatKhau.Clear();
+                        cbLoaiTaiKhoan.SelectedIndex = -1;
+                        cbMaNhanVien.SelectedIndex = -1;
+
+                        LoadNhanVienChuaCoTaiKhoan();
                     }
                     else
                     {
                         MessageBox.Show("Thêm thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private string Selected()
+        {
+            int selectedIndex = dgvTaiKhoan.SelectedCells[0].RowIndex;
+            DataGridViewRow selected = dgvTaiKhoan.Rows[selectedIndex];
+            string selectedID = selected.Cells[0].Value.ToString();
+            return selectedID;
+        }
+
+        private void btXoaTaiKhoan_Click(object sender, EventArgs e)
+        {
+            string taikhoan_selected = Selected();
+            taikhoanBLL = new TaiKhoanBLL();
+            if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                taikhoanBLL.Delete(taikhoan_selected);
+                dgvTaiKhoan.DataSource = taikhoanBLL.getAllUser();
+                txbMaTaiKhoan.Clear();
+                txbTaiKhoan.Clear();
+                txbMatKhau.Clear();
+                cbLoaiTaiKhoan.SelectedIndex = -1;
+                cbMaNhanVien.SelectedIndex = -1;
+                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadNhanVienChuaCoTaiKhoan();
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvTaiKhoan_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            DataGridViewRow selected = dgvTaiKhoan.Rows[index];
+            txbMaTaiKhoan.Text = selected.Cells[0].Value.ToString();
+            txbTaiKhoan.Text = selected.Cells[1].Value.ToString();
+            txbMatKhau.Text = selected.Cells[2].Value.ToString();
+            cbLoaiTaiKhoan.Text = selected.Cells[3].Value.ToString();
+            cbMaNhanVien.Text = selected.Cells[4].Value.ToString();
+        }
+
+        private void btSuaTaiKhoan_Click(object sender, EventArgs e)
+        {
+            if (dgvTaiKhoan.SelectedCells.Count > 0)
+            {
+                int selectedIndex = dgvTaiKhoan.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvTaiKhoan.Rows[selectedIndex];
+                string maTaiKhoan = selectedRow.Cells["MaTaiKhoan"].Value.ToString();
+                string taiKhoan = selectedRow.Cells["Username"].Value.ToString();
+                string matKhau = selectedRow.Cells["Password"].Value.ToString();
+                string loaiTaiKhoan = selectedRow.Cells["LoaiTaiKhoan"].Value.ToString();
+                string maNhanVien = selectedRow.Cells["MaNhanVien"].Value.ToString();
+
+                FormSuaTaiKhoan formSuaTK = new FormSuaTaiKhoan();
+                formSuaTK.MaTaiKhoan = maTaiKhoan;
+                formSuaTK.TaiKhoan = taiKhoan;
+                formSuaTK.MatKhau = matKhau;
+                formSuaTK.LoaiTaiKhoan = loaiTaiKhoan;
+                formSuaTK.MaNhanVien = maNhanVien;
+
+                if (formSuaTK.ShowDialog() == DialogResult.OK)
+                {
+                    dgvTaiKhoan.DataSource = taikhoanBLL.getAllUser();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn tài khoản để sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

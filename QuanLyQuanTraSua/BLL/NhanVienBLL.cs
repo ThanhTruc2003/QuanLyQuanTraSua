@@ -23,11 +23,6 @@ namespace BLL
             return dal.Insert(dto_nhanvien);
         }
 
-        public DataTable getChucVu()
-        {
-            return dal.getChucVu();
-        }
-
         public bool Delete(string MaNhanVien)
         {
             return dal.Delete(MaNhanVien);

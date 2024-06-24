@@ -53,14 +53,6 @@ namespace QuanLyQuanTraSua.GUI
             }
         }
 
-        public Image ByteArrayToImage(byte[] byteArray)
-        {
-            using (MemoryStream ms = new MemoryStream(byteArray))
-            {
-                return Image.FromStream(ms);
-            }
-        }
-
         private Panel CreateProductPanel(DataRow product)
         {
             Panel panel = new Panel();
@@ -85,8 +77,11 @@ namespace QuanLyQuanTraSua.GUI
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             if (product["HinhAnh"] != DBNull.Value)
             {
-                byte[] imageBytes = (byte[])product["HinhAnh"];
-                pictureBox.Image = ByteArrayToImage(imageBytes);
+                string imagePath = Path.Combine(Application.StartupPath, "Images", product["HinhAnh"].ToString());
+                if (File.Exists(imagePath))
+                {
+                    pictureBox.Image = Image.FromFile(imagePath);
+                }
             }
 
             Label nameLabel = new Label();
