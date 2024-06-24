@@ -3,13 +3,14 @@ using System.Data.SqlClient;
 using System.Data;
 using DTO;
 using DAL;
+using QuanLyQuanTraSua.DAL;
 
 namespace DAL
 {
     public class DangNhapDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
-        public bool checkDangNhap(string TaiKhoan, string MatKhau)
+		private SqlConnection conn = ConnectDB.GetConnection();
+		public bool checkDangNhap(string TaiKhoan, string MatKhau)
         {
             string querry = "SELECT * FROM TAIKHOAN WHERE Username = '" + TaiKhoan + "'AND Password = '" + MatKhau + "'";
 

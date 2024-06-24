@@ -55,7 +55,7 @@ CREATE TABLE SANPHAM
 --Tạo bảng Hóa đơn
 CREATE TABLE HOADON
 (
-	MaHoaDon char(10),
+	MaHoaDon int IDENTITY(1,1),
 	NguoiLapHoaDon char(10),
 	NgayLapHoaDon datetime,
 	TongTien decimal(18,0),
@@ -66,7 +66,7 @@ CREATE TABLE HOADON
 CREATE TABLE CHITIETHOADON
 (
 	MaSanPham char(10),
-	MaHoaDon char(10),
+	MaHoaDon int,
 	SoLuong int,
 	DonGia decimal(18,0),
 	CONSTRAINT PK_CHITIETHOADON PRIMARY KEY (MaSanPham, MaHoaDon)
