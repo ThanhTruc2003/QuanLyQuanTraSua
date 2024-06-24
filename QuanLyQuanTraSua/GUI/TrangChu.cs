@@ -15,6 +15,7 @@ namespace QuanLyQuanTraSua.GUI
 		private FormQuanLySanPham quanlySanPham;
 		private FormQuanLyHoaDon quanlyHoaDon;
 		private FormQuanLyTaiKhoan quanlyTaiKhoan;
+
 		private Form LoginForm;
 		public FormTrangChu(Form LoginForm)
 		{
@@ -226,7 +227,6 @@ namespace QuanLyQuanTraSua.GUI
 
 			if (ketqua == DialogResult.Yes)
 			{
-
 				this.Dispose();
 				LoginForm.Show();
 			}

@@ -30,7 +30,7 @@ namespace QuanLyQuanTraSua.GUI
 
 		private void txbTimKiemHoaDon_TextChanged(object sender, EventArgs e)
 		{
-			try
+try
 			{
 				if (txbTimKiemHoaDon.Text != "")
 				{
@@ -58,7 +58,7 @@ namespace QuanLyQuanTraSua.GUI
 				int selectedOrderId = getSelectedOrderId();
 				new FormChiTietHoaDon(selectedOrderId).ShowDialog();
 			}
-			catch
+    catch 
 			{
 				MessageBox.Show("Vui lòng chọn hóa đơn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
