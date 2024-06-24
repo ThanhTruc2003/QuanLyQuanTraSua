@@ -1,5 +1,7 @@
 ﻿using BLL;
 using QuanLyQuanTraSua.BLL;
+using QuanLyQuanTraSua.DAL;
+using QuanLyQuanTraSua.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +30,25 @@ namespace QuanLyQuanTraSua.GUI
 
 		private void txbTimKiemHoaDon_TextChanged(object sender, EventArgs e)
 		{
+			try
+			{
+				if (txbTimKiemHoaDon.Text != "")
+				{
+					List<HoaDon> list = new List<HoaDon>();
+					list.Add(hoadonBLL.getHoaDonById(int.Parse(txbTimKiemHoaDon.Text)));
+					dgvHoaDon.DataSource = list;
+				}
+				else
+				{
+					dgvHoaDon.DataSource = hoadonBLL.getAllHoaDon();
+				}
+
+			}
+			catch
+			{
+
+			}
+
 		}
 
 		private void buttonXemChiTiet_Click(object sender, EventArgs e)
@@ -37,7 +58,7 @@ namespace QuanLyQuanTraSua.GUI
 				int selectedOrderId = getSelectedOrderId();
 				new FormChiTietHoaDon(selectedOrderId).ShowDialog();
 			}
-			catch 
+			catch
 			{
 				MessageBox.Show("Vui lòng chọn hóa đơn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}

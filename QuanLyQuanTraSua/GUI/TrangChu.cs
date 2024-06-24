@@ -15,10 +15,11 @@ namespace QuanLyQuanTraSua.GUI
 		private FormQuanLySanPham quanlySanPham;
 		private FormQuanLyHoaDon quanlyHoaDon;
 		private FormQuanLyTaiKhoan quanlyTaiKhoan;
-
-		public FormTrangChu()
+		private Form LoginForm;
+		public FormTrangChu(Form LoginForm)
 		{
 			InitializeComponent();
+			this.LoginForm = LoginForm;
 		}
 
 		private void AnForm()
@@ -225,9 +226,9 @@ namespace QuanLyQuanTraSua.GUI
 
 			if (ketqua == DialogResult.Yes)
 			{
-				FormLogin DangNhap = new FormLogin();
-				this.Hide();
-				DangNhap.Show();
+
+				this.Dispose();
+				LoginForm.Show();
 			}
 		}
 
