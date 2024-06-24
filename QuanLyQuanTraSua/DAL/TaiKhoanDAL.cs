@@ -3,14 +3,15 @@ using System.Data.SqlClient;
 using System.Data;
 using DTO;
 using DAL;
+using QuanLyQuanTraSua.DAL;
 
 namespace DAL
 {
     public class TaiKhoanDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
+		private SqlConnection conn = ConnectDB.GetConnection();
 
-        public DataTable getAllUser()
+		public DataTable getAllUser()
         {
             string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien
                              FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q

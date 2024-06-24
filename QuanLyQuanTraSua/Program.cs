@@ -1,3 +1,4 @@
+using QuanLyQuanTraSua.DAL;
 using QuanLyQuanTraSua.GUI;
 
 namespace QuanLyQuanTraSua
@@ -13,7 +14,10 @@ namespace QuanLyQuanTraSua
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormTrangChu());
-        }
+			ConnectDB.Start();
+			Application.Run(new FormLogin());
+			ConnectDB.Close();
+
+		}
     }
 }
