@@ -37,20 +37,27 @@ namespace QuanLyQuanTraSua.GUI
 				int selectedOrderId = getSelectedOrderId();
 				new FormChiTietHoaDon(selectedOrderId).ShowDialog();
 			}
-			catch (Exception ex) { }
+			catch 
 			{
-
+				MessageBox.Show("Vui lòng chọn hóa đơn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}
 
 		private int getSelectedOrderId()
 		{
-			DataGridViewCell selectedCell = dgvHoaDon.SelectedCells[0];
+			try
+			{
+				DataGridViewCell selectedCell = dgvHoaDon.SelectedCells[0];
 
-			int selectedRowIndex = selectedCell.RowIndex;
-			string selectedOrderId = dgvHoaDon.Rows[selectedRowIndex].Cells["MaHoaDon"].Value.ToString();
-			return int.Parse(selectedOrderId);
+				int selectedRowIndex = selectedCell.RowIndex;
+				string selectedOrderId = dgvHoaDon.Rows[selectedRowIndex].Cells["MaHoaDon"].Value.ToString();
+				return int.Parse(selectedOrderId);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
 		}
 
 	}

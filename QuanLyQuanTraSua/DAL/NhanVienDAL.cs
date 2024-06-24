@@ -3,14 +3,14 @@ using System.Data.SqlClient;
 using System.Data;
 using DTO;
 using DAL;
+using QuanLyQuanTraSua.DAL;
 
 namespace DAL
 {
     public class NhanVienDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-RI07F7I\MSSQLSERVER01;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
-
-        public DataTable getAllEmployee()
+		private SqlConnection conn = ConnectDB.GetConnection();
+		public DataTable getAllEmployee()
         {
             string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, cv.TenChucVu
                              FROM NHANVIEN nv, CHUCVU cv

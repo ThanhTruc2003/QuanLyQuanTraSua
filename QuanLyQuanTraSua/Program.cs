@@ -15,7 +15,7 @@ namespace QuanLyQuanTraSua
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 			ConnectDB.Start();
-			Application.Run(new FormTrangChu());
+			Application.Run(new FormLogin());
 			ConnectDB.Close();
 
 		}
