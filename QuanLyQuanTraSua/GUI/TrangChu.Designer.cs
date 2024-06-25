@@ -441,6 +441,7 @@
 			btDoiMatKhau.Text = "Đổi mật khẩu";
 			btDoiMatKhau.TextAlign = ContentAlignment.MiddleLeft;
 			btDoiMatKhau.UseVisualStyleBackColor = false;
+			btDoiMatKhau.Click += btDoiMatKhau_Click;
 			// 
 			// btDangXuat
 			// 

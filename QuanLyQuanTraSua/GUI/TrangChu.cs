@@ -275,5 +275,14 @@ namespace QuanLyQuanTraSua.GUI
 			thongKe.Show();
 		}
 
+		private void btDoiMatKhau_Click(object sender, EventArgs e)
+		{
+			FormDoiMatKhau formDoiMatKhau = new FormDoiMatKhau();
+			formDoiMatKhau.Dock = DockStyle.Fill;
+			formDoiMatKhau.TopLevel = false;
+			PanelAnhNen.Controls.Add(formDoiMatKhau);
+			formDoiMatKhau.BringToFront();
+			formDoiMatKhau.Show();
+		}
 	}
 }
