@@ -1,12 +1,12 @@
 ﻿namespace QuanLyQuanTraSua.DTO
 {
-	public class HoaDon
+	public class HoaDonDTO
 	{
-		public HoaDon()
+		public HoaDonDTO()
 		{
 			
 		}
-		public HoaDon(int maHoaDon, string nguoiLapHoaDon, DateTime ngayLapHoaDon, decimal tongTien)
+		public HoaDonDTO (int maHoaDon, string nguoiLapHoaDon, DateTime ngayLapHoaDon, decimal tongTien)
 		{
 			MaHoaDon = maHoaDon;
 			NguoiLapHoaDon = nguoiLapHoaDon;

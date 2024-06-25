@@ -1,42 +1,53 @@
-﻿using System;
+﻿using DTO;
+using QuanLyQuanTraSua.DTO;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
-using DTO;
-using DAL;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using QuanLyQuanTraSua.DAL;
 
 
 namespace DAL
 {
     public class ChiTietHoaDonDAL
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
-        public bool Insert(ChiTietHoaDonDTO dto_chitiethoadon)
+        private SqlConnection conn = ConnectDB.GetConnection();
+        public bool Insert(List<ChiTietHoaDonDTO> chiTietHoaDonList)
         {
-            string query = @"Insert into CHITIETHOADON(MaSanPham, MaHoaDon, SoLuong, DonGia) 
-                     values (@MaSanPham, @MaHoaDon, @SoLuong, @DonGia)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@MaSanPham", dto_chitiethoadon.MaSanPham);
-            cmd.Parameters.AddWithValue("@MaHoaDon", dto_chitiethoadon.MaHoaDon);
-            cmd.Parameters.AddWithValue("@SoLuong", dto_chitiethoadon.SoLuong);
-            cmd.Parameters.AddWithValue("@DonGia", dto_chitiethoadon.DonGia);
+            string sql = @"INSERT INTO CHITIETHOADON (MaHoaDon, MaSanPham, SoLuong, DonGia)
+                   VALUES (@MaHoaDon, @MaSanPham, @SoLuong, @DonGia)";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+
             try
             {
                 conn.Open();
-                if (cmd.ExecuteNonQuery() > 0)
+
+                foreach (var chiTiet in chiTietHoaDonList)
                 {
-                    return true;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@MaHoaDon", chiTiet.MaHoaDon);
+                    cmd.Parameters.AddWithValue("@MaSanPham", chiTiet.MaSanPham);
+                    cmd.Parameters.AddWithValue("@SoLuong", chiTiet.SoLuong);
+                    cmd.Parameters.AddWithValue("@DonGia", chiTiet.DonGia);
+
+                    if (cmd.ExecuteNonQuery() <= 0)
+                    {
+                        return false; 
+                    }
                 }
+                return true; 
             }
             catch (SqlException ex1)
             {
-
                 throw ex1;
             }
             finally
             {
                 conn.Close();
             }
-            return true;
         }
     }
 }

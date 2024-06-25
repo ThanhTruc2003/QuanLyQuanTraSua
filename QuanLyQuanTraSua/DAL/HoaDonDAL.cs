@@ -1,4 +1,5 @@
-﻿using QuanLyQuanTraSua.DTO;
+﻿using DTO;
+using QuanLyQuanTraSua.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +13,8 @@ namespace QuanLyQuanTraSua.DAL
 	public class HoaDonDAL
 	{
 		SqlConnection conn; 
-		public HoaDonDAL() { 
+		public HoaDonDAL() 
+		{ 
 			conn = ConnectDB.GetConnection();
 		}
 
@@ -26,9 +28,10 @@ namespace QuanLyQuanTraSua.DAL
 			ada.Fill(table);
 			return table;
 		}
-		public HoaDon getHoaDonById(int maHoaDon)
+
+		public HoaDonDTO getHoaDonById(int maHoaDon)
 		{
-			HoaDon hoaDon = null;
+			HoaDonDTO hoaDon = null;
 			try
 			{
 				string query = @"SELECT MaHoaDon, NHANVIEN.HoTen as NguoiLapHoaDon, NgayLapHoaDon, TongTien  
@@ -48,7 +51,7 @@ namespace QuanLyQuanTraSua.DAL
 					DateTime ngayLap = reader.GetDateTime(reader.GetOrdinal("NgayLapHoaDon"));
 					decimal tongTien = reader.GetDecimal(reader.GetOrdinal("TongTien"));
 
-					hoaDon = new HoaDon(id, nguoiLap, ngayLap, tongTien);
+					hoaDon = new HoaDonDTO(id, nguoiLap, ngayLap, tongTien);
 				}
 				conn.Close();
 				reader.Close();
@@ -58,6 +61,7 @@ namespace QuanLyQuanTraSua.DAL
 			}
 			return hoaDon;
 		}
+
 		public DataTable getChiTietHoaDonTheoMaHoaDon(int maHoaDon)
 		{
 			string query = @"SELECT CHITIETHOADON.MaSanPham, 
@@ -75,5 +79,37 @@ namespace QuanLyQuanTraSua.DAL
 			ada.Fill(table);
 			return table;
 		}
-	}
+
+        public int Insert(HoaDonDTO dto_hoadon)
+        {
+            DateTime NgayLapHoaDon = DateTime.Now;
+            string sql = @"INSERT INTO HOADON (NguoiLapHoaDon, NgayLapHoaDon, TongTien)
+                   OUTPUT INSERTED.MaHoaDon
+                   VALUES (@NguoiLapHoaDon, @NgayLapHoaDon, @TongTien)";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@NguoiLapHoaDon", dto_hoadon.NguoiLapHoaDon);
+            cmd.Parameters.AddWithValue("@NgayLapHoaDon", NgayLapHoaDon);
+            cmd.Parameters.AddWithValue("@TongTien", dto_hoadon.TongTien);
+
+            try
+            {
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+            }
+            catch (SqlException ex1)
+            {
+                throw ex1;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return -1; 
+        }
+    }
 }

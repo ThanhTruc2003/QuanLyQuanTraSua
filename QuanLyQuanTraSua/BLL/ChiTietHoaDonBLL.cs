@@ -8,9 +8,10 @@ namespace BLL
     public class ChiTietHoaDonBLL
     {
         private ChiTietHoaDonDAL dal = new ChiTietHoaDonDAL();
-        public bool Insert(ChiTietHoaDonDTO dto_chitiethoadon)
+
+        public bool Insert(List<ChiTietHoaDonDTO> chiTietHoaDonList)
         {
-            return dal.Insert(dto_chitiethoadon);
+            return dal.Insert(chiTietHoaDonList);
         }
     }
 }

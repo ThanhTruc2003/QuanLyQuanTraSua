@@ -8,7 +8,7 @@ namespace QuanLyQuanTraSua.GUI
 	public partial class FormChiTietHoaDon : Form
 	{
 		private HoaDonBLL hoaDonBLL;
-		private HoaDon hoaDon;
+		private HoaDonDTO hoaDon;
 		public FormChiTietHoaDon(int orderId)
 		{
 			InitializeComponent();

@@ -97,10 +97,6 @@ namespace QuanLyQuanTraSua.GUI
                 txbTenDanhMuc.Clear();
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-            {
-                MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void dgvDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)

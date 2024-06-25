@@ -20,5 +20,10 @@ namespace DTO
             this.SoLuong = SoLuong;
             this.DonGia = DonGia;
         }
+
+        public ChiTietHoaDonDTO() 
+        {
+
+        }
     }
 }

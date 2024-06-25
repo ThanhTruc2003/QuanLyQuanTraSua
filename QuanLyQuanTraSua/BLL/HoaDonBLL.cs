@@ -11,13 +11,17 @@ namespace QuanLyQuanTraSua.BLL
 		{
 			return dal.getAllHoaDon();
 		}
-		public HoaDon getHoaDonById(int maHoaDon)
+		public HoaDonDTO getHoaDonById(int maHoaDon)
 		{
 			return dal.getHoaDonById(maHoaDon);
 		}
 		public DataTable getChiTietHoaDonTheoMaHoaDon(int maHoaDon)
 		{
 			return dal.getChiTietHoaDonTheoMaHoaDon(maHoaDon);
+		}
+		public int Insert(HoaDonDTO dto_hoadon)
+		{
+			return dal.Insert(dto_hoadon);
 		}
 	}
 }

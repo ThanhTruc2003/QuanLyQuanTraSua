@@ -249,10 +249,6 @@ namespace QuanLyQuanTraSua.GUI
                 pBHinhAnh.Image = null;
                 cbLoaiSanPham.SelectedIndex = -1;
                 MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }    
         }
 
