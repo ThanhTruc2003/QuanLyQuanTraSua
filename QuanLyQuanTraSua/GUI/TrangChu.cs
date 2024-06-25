@@ -16,10 +16,12 @@ namespace QuanLyQuanTraSua.GUI
         private FormQuanLyHoaDon quanlyHoaDon;
         private FormQuanLyTaiKhoan quanlyTaiKhoan;
 
-        public FormTrangChu()
-        {
-            InitializeComponent();
-        }
+		private Form LoginForm;
+		public FormTrangChu(Form LoginForm)
+		{
+			InitializeComponent();
+			this.LoginForm = LoginForm;
+		}
 
         private void AnForm()
         {
@@ -215,13 +217,12 @@ namespace QuanLyQuanTraSua.GUI
         {
             DialogResult ketqua = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (ketqua == DialogResult.Yes)
-            {
-                FormLogin DangNhap = new FormLogin();
-                this.Hide();
-                DangNhap.Show();
-            }
-        }
+			if (ketqua == DialogResult.Yes)
+			{
+				this.Dispose();
+				LoginForm.Show();
+			}
+		}
 
         private void PanelThoat_MouseEnter(object sender, EventArgs e)
         {
@@ -283,5 +284,14 @@ namespace QuanLyQuanTraSua.GUI
             thongKe.Show();
         }
 
-    }
+		private void btDoiMatKhau_Click(object sender, EventArgs e)
+		{
+			FormDoiMatKhau formDoiMatKhau = new FormDoiMatKhau();
+			formDoiMatKhau.Dock = DockStyle.Fill;
+			formDoiMatKhau.TopLevel = false;
+			PanelAnhNen.Controls.Add(formDoiMatKhau);
+			formDoiMatKhau.BringToFront();
+			formDoiMatKhau.Show();
+		}
+	}
 }

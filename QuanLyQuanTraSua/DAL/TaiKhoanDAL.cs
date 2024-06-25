@@ -141,7 +141,48 @@ namespace DAL
             }
         }
 
-        public void CloseConnection()
+        public bool isValidPassword(string maTk,  string password)
+        {
+			string querry = "SELECT * FROM TAIKHOAN WHERE MaTaiKhoan = '" + maTk + "'AND Password = '" + password + "'";
+
+			SqlDataAdapter sda = new SqlDataAdapter(querry, conn);
+
+			DataTable dtable = new DataTable();
+			sda.Fill(dtable);
+
+			if (dtable.Rows.Count > 0)
+			{
+				return true;
+			}
+			return false;
+		}
+		public bool ChangePassword(string maTk, string password)
+		{
+			string query = @"Update TAIKHOAN set  
+                     Password = @Password
+                     where MaTaiKhoan = @MaTaiKhoan";
+
+			using (SqlCommand cmd = new SqlCommand(query, conn))
+			{
+				cmd.Parameters.AddWithValue("@Password", password);
+				cmd.Parameters.AddWithValue("@MaTaiKhoan", maTk);
+
+				try
+				{
+					conn.Open();
+					return cmd.ExecuteNonQuery() > 0;
+				}
+				catch (SqlException ex1)
+				{
+					throw ex1;
+				}
+				finally
+				{
+					conn.Close();
+				}
+			}
+		}
+		public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
             {
