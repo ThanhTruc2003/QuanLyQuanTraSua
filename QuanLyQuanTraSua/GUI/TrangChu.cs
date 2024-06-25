@@ -15,13 +15,16 @@ namespace QuanLyQuanTraSua.GUI
         private FormQuanLySanPham quanlySanPham;
         private FormQuanLyHoaDon quanlyHoaDon;
         private FormQuanLyTaiKhoan quanlyTaiKhoan;
+        private FormThongKe ThongKeDoanhThu;
+        private FormThongKeSanPham ThongKeSanPham;
+        private FormDoiMatKhau doiMatKhau;
 
-		private Form LoginForm;
-		public FormTrangChu(Form LoginForm)
-		{
-			InitializeComponent();
-			this.LoginForm = LoginForm;
-		}
+        private Form LoginForm;
+        public FormTrangChu(Form LoginForm)
+        {
+            InitializeComponent();
+            this.LoginForm = LoginForm;
+        }
 
         private void AnForm()
         {
@@ -48,6 +51,18 @@ namespace QuanLyQuanTraSua.GUI
             if (quanlyTaiKhoan != null)
             {
                 quanlyTaiKhoan.Hide();
+            }
+            if (ThongKeDoanhThu != null)
+            {
+                ThongKeDoanhThu.Hide();
+            }
+            if (ThongKeSanPham != null)
+            {
+                ThongKeSanPham.Hide();
+            }
+            if (doiMatKhau != null)
+            {
+                doiMatKhau.Hide();
             }
         }
 
@@ -217,12 +232,12 @@ namespace QuanLyQuanTraSua.GUI
         {
             DialogResult ketqua = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-			if (ketqua == DialogResult.Yes)
-			{
-				this.Dispose();
-				LoginForm.Show();
-			}
-		}
+            if (ketqua == DialogResult.Yes)
+            {
+                this.Dispose();
+                LoginForm.Show();
+            }
+        }
 
         private void PanelThoat_MouseEnter(object sender, EventArgs e)
         {
@@ -268,30 +283,35 @@ namespace QuanLyQuanTraSua.GUI
 
         private void btThongKeSanPham_Click(object sender, EventArgs e)
         {
-            FormThongKeSanPham thongKe = new FormThongKeSanPham();
-            thongKe.TopLevel = false;
-            PanelAnhNen.Controls.Add(thongKe);
-            thongKe.BringToFront();
-            thongKe.Show();
+            AnForm();
+            ThongKeSanPham = new FormThongKeSanPham();
+            ThongKeSanPham.TopLevel = false;
+            PanelAnhNen.Controls.Add(ThongKeSanPham);
+            ThongKeSanPham.BringToFront();
+            ThongKeSanPham.Show();
         }
 
         private void btDoanhThu_Click(object sender, EventArgs e)
         {
-            FormThongKe thongKe = new FormThongKe();
-            thongKe.TopLevel = false;
-            PanelAnhNen.Controls.Add(thongKe);
-            thongKe.BringToFront();
-            thongKe.Show();
+            AnForm();
+            ThongKeDoanhThu = new FormThongKe();
+            ThongKeDoanhThu.TopLevel = false;
+            PanelAnhNen.Controls.Add(ThongKeDoanhThu);
+            ThongKeDoanhThu.BringToFront();
+            ThongKeDoanhThu.Show();
         }
 
-		private void btDoiMatKhau_Click(object sender, EventArgs e)
-		{
-			FormDoiMatKhau formDoiMatKhau = new FormDoiMatKhau();
-			formDoiMatKhau.Dock = DockStyle.Fill;
-			formDoiMatKhau.TopLevel = false;
-			PanelAnhNen.Controls.Add(formDoiMatKhau);
-			formDoiMatKhau.BringToFront();
-			formDoiMatKhau.Show();
-		}
-	}
+        private void btDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            AnForm();
+            doiMatKhau = new FormDoiMatKhau();
+            doiMatKhau.TopLevel = false;
+            PanelAnhNen.BackgroundImage = null;
+            PanelAnhNen.Controls.Add(doiMatKhau);
+            int x = (PanelAnhNen.Width - doiMatKhau.Width) / 2;
+            int y = (PanelAnhNen.Height - doiMatKhau.Height) / 2;
+            doiMatKhau.Location = new Point(x, y);
+            doiMatKhau.Show();
+        }
+    }
 }

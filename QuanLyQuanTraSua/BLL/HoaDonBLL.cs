@@ -23,5 +23,5 @@ namespace QuanLyQuanTraSua.BLL
 		{
 			return dal.Insert(dto_hoadon);
 		}
-	}
+    }
 }

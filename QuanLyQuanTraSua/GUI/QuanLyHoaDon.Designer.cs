@@ -34,14 +34,14 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             dgvHoaDon = new DataGridView();
-            txbTimKiemHoaDon = new TextBox();
-            lbTimKiemNV = new Label();
-            lbDanhSachNV = new Label();
-            buttonXemChiTiet = new Button();
             MaHoaDon = new DataGridViewTextBoxColumn();
             NguoiLapHoaDon = new DataGridViewTextBoxColumn();
             NgayLapHoaDon = new DataGridViewTextBoxColumn();
             TongTien = new DataGridViewTextBoxColumn();
+            txbTimKiemHoaDon = new TextBox();
+            lbTimKiemNV = new Label();
+            lbDanhSachNV = new Label();
+            buttonXemChiTiet = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvHoaDon).BeginInit();
             SuspendLayout();
             // 
@@ -67,46 +67,6 @@
             dgvHoaDon.RowTemplate.Height = 29;
             dgvHoaDon.Size = new Size(1225, 340);
             dgvHoaDon.TabIndex = 9;
-            // 
-            // txbTimKiemHoaDon
-            // 
-            txbTimKiemHoaDon.Location = new Point(929, 41);
-            txbTimKiemHoaDon.Name = "txbTimKiemHoaDon";
-            txbTimKiemHoaDon.Size = new Size(308, 27);
-            txbTimKiemHoaDon.TabIndex = 8;
-            txbTimKiemHoaDon.TextChanged += txbTimKiemHoaDon_TextChanged;
-            // 
-            // lbTimKiemNV
-            // 
-            lbTimKiemNV.AutoSize = true;
-            lbTimKiemNV.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lbTimKiemNV.Location = new Point(926, 12);
-            lbTimKiemNV.Name = "lbTimKiemNV";
-            lbTimKiemNV.Size = new Size(157, 20);
-            lbTimKiemNV.TabIndex = 7;
-            lbTimKiemNV.Text = "Tìm kiếm mã hóa đơn";
-            // 
-            // lbDanhSachNV
-            // 
-            lbDanhSachNV.AutoSize = true;
-            lbDanhSachNV.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lbDanhSachNV.Location = new Point(12, 43);
-            lbDanhSachNV.Name = "lbDanhSachNV";
-            lbDanhSachNV.Size = new Size(211, 25);
-            lbDanhSachNV.TabIndex = 6;
-            lbDanhSachNV.Text = "DANH SÁCH HÓA ĐƠN";
-            // 
-            // buttonXemChiTiet
-            // 
-            buttonXemChiTiet.Cursor = Cursors.Hand;
-            buttonXemChiTiet.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonXemChiTiet.Location = new Point(1066, 435);
-            buttonXemChiTiet.Name = "buttonXemChiTiet";
-            buttonXemChiTiet.Size = new Size(171, 41);
-            buttonXemChiTiet.TabIndex = 10;
-            buttonXemChiTiet.Text = "Xem chi tiết";
-            buttonXemChiTiet.UseVisualStyleBackColor = true;
-            buttonXemChiTiet.Click += buttonXemChiTiet_Click;
             // 
             // MaHoaDon
             // 
@@ -146,6 +106,49 @@
             TongTien.MinimumWidth = 6;
             TongTien.Name = "TongTien";
             TongTien.Resizable = DataGridViewTriState.True;
+            // 
+            // txbTimKiemHoaDon
+            // 
+            txbTimKiemHoaDon.Location = new Point(929, 41);
+            txbTimKiemHoaDon.Name = "txbTimKiemHoaDon";
+            txbTimKiemHoaDon.Size = new Size(308, 27);
+            txbTimKiemHoaDon.TabIndex = 8;
+            txbTimKiemHoaDon.TextChanged += txbTimKiemHoaDon_TextChanged;
+            // 
+            // lbTimKiemNV
+            // 
+            lbTimKiemNV.AutoSize = true;
+            lbTimKiemNV.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTimKiemNV.Location = new Point(926, 12);
+            lbTimKiemNV.Name = "lbTimKiemNV";
+            lbTimKiemNV.Size = new Size(157, 20);
+            lbTimKiemNV.TabIndex = 7;
+            lbTimKiemNV.Text = "Tìm kiếm mã hóa đơn";
+            // 
+            // lbDanhSachNV
+            // 
+            lbDanhSachNV.AutoSize = true;
+            lbDanhSachNV.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lbDanhSachNV.Location = new Point(12, 43);
+            lbDanhSachNV.Name = "lbDanhSachNV";
+            lbDanhSachNV.Size = new Size(211, 25);
+            lbDanhSachNV.TabIndex = 6;
+            lbDanhSachNV.Text = "DANH SÁCH HÓA ĐƠN";
+            // 
+            // buttonXemChiTiet
+            // 
+            buttonXemChiTiet.Cursor = Cursors.Hand;
+            buttonXemChiTiet.FlatAppearance.BorderColor = Color.FromArgb(255, 192, 192);
+            buttonXemChiTiet.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
+            buttonXemChiTiet.FlatStyle = FlatStyle.Flat;
+            buttonXemChiTiet.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonXemChiTiet.Location = new Point(1066, 435);
+            buttonXemChiTiet.Name = "buttonXemChiTiet";
+            buttonXemChiTiet.Size = new Size(171, 41);
+            buttonXemChiTiet.TabIndex = 10;
+            buttonXemChiTiet.Text = "Xem chi tiết";
+            buttonXemChiTiet.UseVisualStyleBackColor = true;
+            buttonXemChiTiet.Click += buttonXemChiTiet_Click;
             // 
             // FormQuanLyHoaDon
             // 
