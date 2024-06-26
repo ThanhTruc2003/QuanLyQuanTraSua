@@ -32,16 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTrangChu));
             PanelAnhNen = new Panel();
             pictureLogo = new PictureBox();
-            lbGoiMon = new Label();
-            lbQuanLy = new Label();
-            LogoThongKe = new PictureBox();
-            lbThongKe = new Label();
-            lbThoat = new Label();
             lbWelcome = new Label();
             label7 = new Label();
             LogoUser = new PictureBox();
-            LogoThoat = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
+            timer2 = new System.Windows.Forms.Timer(components);
+            timerToCollapseThongKe = new System.Windows.Forms.Timer(components);
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            PanelGoiMon = new Panel();
             LogoGoiMon = new PictureBox();
+            lbGoiMon = new Label();
             PanelQuanLy = new Panel();
             btQLTaiKhoan = new Button();
             btQLHoaDon = new Button();
@@ -49,32 +49,34 @@
             btQLDanhMuc = new Button();
             btQLNhanVien = new Button();
             LogoQuanLy = new PictureBox();
-            timer1 = new System.Windows.Forms.Timer(components);
-            timer2 = new System.Windows.Forms.Timer(components);
-            PanelGoiMon = new Panel();
+            lbQuanLy = new Label();
             PanelThongKe = new Panel();
             btThongKeDoanhThu = new Button();
             btThongKeSanPham = new Button();
-            PanelThoat = new Panel();
-            timerToCollapseThongKe = new System.Windows.Forms.Timer(components);
-            lbHeThong = new Label();
-            LogoHeThong = new PictureBox();
-            btThongTin = new Button();
-            btDoiMatKhau = new Button();
-            btDangXuat = new Button();
+            lbThongKe = new Label();
+            LogoThongKe = new PictureBox();
             PanelHeThong = new Panel();
+            btDangXuat = new Button();
+            btDoiMatKhau = new Button();
+            btThongTin = new Button();
+            LogoHeThong = new PictureBox();
+            lbHeThong = new Label();
+            PanelThoat = new Panel();
+            lbThoat = new Label();
+            LogoThoat = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)LogoThongKe).BeginInit();
             ((System.ComponentModel.ISupportInitialize)LogoUser).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)LogoThoat).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            PanelGoiMon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoGoiMon).BeginInit();
             PanelQuanLy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoQuanLy).BeginInit();
-            PanelGoiMon.SuspendLayout();
             PanelThongKe.SuspendLayout();
-            PanelThoat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)LogoHeThong).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)LogoThongKe).BeginInit();
             PanelHeThong.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoHeThong).BeginInit();
+            PanelThoat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoThoat).BeginInit();
             SuspendLayout();
             // 
             // PanelAnhNen
@@ -97,58 +99,6 @@
             pictureLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureLogo.TabIndex = 1;
             pictureLogo.TabStop = false;
-            // 
-            // lbGoiMon
-            // 
-            lbGoiMon.AutoSize = true;
-            lbGoiMon.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbGoiMon.ForeColor = SystemColors.ControlText;
-            lbGoiMon.Location = new Point(32, 61);
-            lbGoiMon.Name = "lbGoiMon";
-            lbGoiMon.Size = new Size(66, 20);
-            lbGoiMon.TabIndex = 3;
-            lbGoiMon.Text = "Gọi món";
-            // 
-            // lbQuanLy
-            // 
-            lbQuanLy.AutoSize = true;
-            lbQuanLy.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbQuanLy.Location = new Point(34, 58);
-            lbQuanLy.Name = "lbQuanLy";
-            lbQuanLy.Size = new Size(59, 20);
-            lbQuanLy.TabIndex = 5;
-            lbQuanLy.Text = "Quản lý";
-            // 
-            // LogoThongKe
-            // 
-            LogoThongKe.Cursor = Cursors.Hand;
-            LogoThongKe.Image = (Image)resources.GetObject("LogoThongKe.Image");
-            LogoThongKe.Location = new Point(32, 0);
-            LogoThongKe.Name = "LogoThongKe";
-            LogoThongKe.Size = new Size(66, 55);
-            LogoThongKe.SizeMode = PictureBoxSizeMode.Zoom;
-            LogoThongKe.TabIndex = 6;
-            LogoThongKe.TabStop = false;
-            // 
-            // lbThongKe
-            // 
-            lbThongKe.AutoSize = true;
-            lbThongKe.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbThongKe.Location = new Point(31, 58);
-            lbThongKe.Name = "lbThongKe";
-            lbThongKe.Size = new Size(70, 20);
-            lbThongKe.TabIndex = 7;
-            lbThongKe.Text = "Thống kê";
-            // 
-            // lbThoat
-            // 
-            lbThoat.AutoSize = true;
-            lbThoat.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbThoat.Location = new Point(39, 58);
-            lbThoat.Name = "lbThoat";
-            lbThoat.Size = new Size(47, 20);
-            lbThoat.TabIndex = 11;
-            lbThoat.Text = "Thoát";
             // 
             // lbWelcome
             // 
@@ -178,16 +128,49 @@
             LogoUser.TabIndex = 15;
             LogoUser.TabStop = false;
             // 
-            // LogoThoat
+            // timer1
             // 
-            LogoThoat.Cursor = Cursors.Hand;
-            LogoThoat.Image = (Image)resources.GetObject("LogoThoat.Image");
-            LogoThoat.Location = new Point(32, 0);
-            LogoThoat.Name = "LogoThoat";
-            LogoThoat.Size = new Size(66, 55);
-            LogoThoat.SizeMode = PictureBoxSizeMode.Zoom;
-            LogoThoat.TabIndex = 10;
-            LogoThoat.TabStop = false;
+            timer1.Interval = 15;
+            timer1.Tick += timer1_Tick;
+            // 
+            // timer2
+            // 
+            timer2.Interval = 15;
+            timer2.Tick += timer2_Tick;
+            // 
+            // timerToCollapseThongKe
+            // 
+            timerToCollapseThongKe.Interval = 15;
+            timerToCollapseThongKe.Tick += timerToCollapseThongKe_Tick;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.AutoScrollMinSize = new Size(0, 578);
+            flowLayoutPanel1.Controls.Add(PanelGoiMon);
+            flowLayoutPanel1.Controls.Add(PanelQuanLy);
+            flowLayoutPanel1.Controls.Add(PanelThongKe);
+            flowLayoutPanel1.Controls.Add(PanelHeThong);
+            flowLayoutPanel1.Controls.Add(PanelThoat);
+            flowLayoutPanel1.Location = new Point(0, 89);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(131, 578);
+            flowLayoutPanel1.TabIndex = 16;
+            // 
+            // PanelGoiMon
+            // 
+            PanelGoiMon.AutoScroll = true;
+            PanelGoiMon.Controls.Add(LogoGoiMon);
+            PanelGoiMon.Controls.Add(lbGoiMon);
+            PanelGoiMon.Cursor = Cursors.Hand;
+            PanelGoiMon.Location = new Point(0, 16);
+            PanelGoiMon.Margin = new Padding(0, 16, 0, 16);
+            PanelGoiMon.Name = "PanelGoiMon";
+            PanelGoiMon.Size = new Size(131, 95);
+            PanelGoiMon.TabIndex = 24;
+            PanelGoiMon.MouseEnter += PanelGoiMon_MouseEnter;
+            PanelGoiMon.MouseLeave += PanelGoiMon_MouseLeave;
             // 
             // LogoGoiMon
             // 
@@ -200,6 +183,17 @@
             LogoGoiMon.TabIndex = 16;
             LogoGoiMon.TabStop = false;
             // 
+            // lbGoiMon
+            // 
+            lbGoiMon.AutoSize = true;
+            lbGoiMon.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbGoiMon.ForeColor = SystemColors.ControlText;
+            lbGoiMon.Location = new Point(32, 61);
+            lbGoiMon.Name = "lbGoiMon";
+            lbGoiMon.Size = new Size(66, 20);
+            lbGoiMon.TabIndex = 3;
+            lbGoiMon.Text = "Gọi món";
+            // 
             // PanelQuanLy
             // 
             PanelQuanLy.BackColor = Color.MistyRose;
@@ -211,12 +205,13 @@
             PanelQuanLy.Controls.Add(LogoQuanLy);
             PanelQuanLy.Controls.Add(lbQuanLy);
             PanelQuanLy.Cursor = Cursors.Hand;
-            PanelQuanLy.Location = new Point(0, 225);
+            PanelQuanLy.Location = new Point(131, 0);
+            PanelQuanLy.Margin = new Padding(0, 0, 0, 16);
             PanelQuanLy.MaximumSize = new Size(131, 236);
             PanelQuanLy.MinimumSize = new Size(131, 89);
             PanelQuanLy.Name = "PanelQuanLy";
             PanelQuanLy.Size = new Size(131, 89);
-            PanelQuanLy.TabIndex = 17;
+            PanelQuanLy.TabIndex = 22;
             PanelQuanLy.Click += PanelQuanLy_Click;
             PanelQuanLy.MouseEnter += PanelQuanLy_MouseEnter;
             PanelQuanLy.MouseLeave += PanelQuanLy_MouseLeave;
@@ -233,7 +228,6 @@
             btQLTaiKhoan.Text = "Tài khoản";
             btQLTaiKhoan.TextAlign = ContentAlignment.MiddleLeft;
             btQLTaiKhoan.UseVisualStyleBackColor = false;
-            btQLTaiKhoan.Click += btQLTaiKhoan_Click;
             // 
             // btQLHoaDon
             // 
@@ -248,7 +242,6 @@
             btQLHoaDon.Text = "Hóa đơn";
             btQLHoaDon.TextAlign = ContentAlignment.MiddleLeft;
             btQLHoaDon.UseVisualStyleBackColor = false;
-            btQLHoaDon.Click += btQLHoaDon_Click;
             // 
             // btQLSanPham
             // 
@@ -263,7 +256,6 @@
             btQLSanPham.Text = "Sản phẩm";
             btQLSanPham.TextAlign = ContentAlignment.MiddleLeft;
             btQLSanPham.UseVisualStyleBackColor = false;
-            btQLSanPham.Click += btQLSanPham_Click;
             // 
             // btQLDanhMuc
             // 
@@ -278,7 +270,6 @@
             btQLDanhMuc.Text = "Danh mục";
             btQLDanhMuc.TextAlign = ContentAlignment.MiddleLeft;
             btQLDanhMuc.UseVisualStyleBackColor = false;
-            btQLDanhMuc.Click += btQLDanhMuc_Click;
             // 
             // btQLNhanVien
             // 
@@ -293,7 +284,6 @@
             btQLNhanVien.Text = "Nhân viên";
             btQLNhanVien.TextAlign = ContentAlignment.MiddleLeft;
             btQLNhanVien.UseVisualStyleBackColor = false;
-            btQLNhanVien.Click += btQLNhanVien_Click;
             // 
             // LogoQuanLy
             // 
@@ -306,28 +296,15 @@
             LogoQuanLy.TabIndex = 4;
             LogoQuanLy.TabStop = false;
             // 
-            // timer1
+            // lbQuanLy
             // 
-            timer1.Interval = 15;
-            timer1.Tick += timer1_Tick;
-            // 
-            // timer2
-            // 
-            timer2.Interval = 15;
-            timer2.Tick += timer2_Tick;
-            // 
-            // PanelGoiMon
-            // 
-            PanelGoiMon.Controls.Add(LogoGoiMon);
-            PanelGoiMon.Controls.Add(lbGoiMon);
-            PanelGoiMon.Cursor = Cursors.Hand;
-            PanelGoiMon.Location = new Point(0, 108);
-            PanelGoiMon.Name = "PanelGoiMon";
-            PanelGoiMon.Size = new Size(131, 98);
-            PanelGoiMon.TabIndex = 19;
-            PanelGoiMon.Click += PanelGoiMon_Click;
-            PanelGoiMon.MouseEnter += PanelGoiMon_MouseEnter;
-            PanelGoiMon.MouseLeave += PanelGoiMon_MouseLeave;
+            lbQuanLy.AutoSize = true;
+            lbQuanLy.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbQuanLy.Location = new Point(34, 58);
+            lbQuanLy.Name = "lbQuanLy";
+            lbQuanLy.Size = new Size(59, 20);
+            lbQuanLy.TabIndex = 5;
+            lbQuanLy.Text = "Quản lý";
             // 
             // PanelThongKe
             // 
@@ -336,12 +313,13 @@
             PanelThongKe.Controls.Add(lbThongKe);
             PanelThongKe.Controls.Add(LogoThongKe);
             PanelThongKe.Cursor = Cursors.Hand;
-            PanelThongKe.Location = new Point(0, 330);
+            PanelThongKe.Location = new Point(262, 0);
+            PanelThongKe.Margin = new Padding(0, 0, 0, 16);
             PanelThongKe.MaximumSize = new Size(131, 156);
             PanelThongKe.MinimumSize = new Size(131, 89);
             PanelThongKe.Name = "PanelThongKe";
             PanelThongKe.Size = new Size(131, 89);
-            PanelThongKe.TabIndex = 20;
+            PanelThongKe.TabIndex = 25;
             PanelThongKe.Click += PanelThongKe_Click;
             PanelThongKe.MouseEnter += PanelThongKe_MouseEnter;
             PanelThongKe.MouseLeave += PanelThongKe_MouseLeave;
@@ -359,7 +337,6 @@
             btThongKeDoanhThu.Text = "Doanh thu";
             btThongKeDoanhThu.TextAlign = ContentAlignment.MiddleLeft;
             btThongKeDoanhThu.UseVisualStyleBackColor = false;
-            btThongKeDoanhThu.Click += btDoanhThu_Click;
             // 
             // btThongKeSanPham
             // 
@@ -374,60 +351,60 @@
             btThongKeSanPham.Text = "Sản phẩm";
             btThongKeSanPham.TextAlign = ContentAlignment.MiddleLeft;
             btThongKeSanPham.UseVisualStyleBackColor = false;
-            btThongKeSanPham.Click += btThongKeSanPham_Click;
             // 
-            // PanelThoat
+            // lbThongKe
             // 
-            PanelThoat.Controls.Add(lbThoat);
-            PanelThoat.Controls.Add(LogoThoat);
-            PanelThoat.Cursor = Cursors.Hand;
-            PanelThoat.Location = new Point(0, 546);
-            PanelThoat.Name = "PanelThoat";
-            PanelThoat.Size = new Size(131, 89);
-            PanelThoat.TabIndex = 21;
-            PanelThoat.Click += PanelThoat_Click;
-            PanelThoat.MouseEnter += PanelThoat_MouseEnter;
-            PanelThoat.MouseLeave += PanelThoat_MouseLeave;
+            lbThongKe.AutoSize = true;
+            lbThongKe.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbThongKe.Location = new Point(31, 58);
+            lbThongKe.Name = "lbThongKe";
+            lbThongKe.Size = new Size(70, 20);
+            lbThongKe.TabIndex = 7;
+            lbThongKe.Text = "Thống kê";
             // 
-            // timerToCollapseThongKe
+            // LogoThongKe
             // 
-            timerToCollapseThongKe.Interval = 15;
-            timerToCollapseThongKe.Tick += timerToCollapseThongKe_Tick;
+            LogoThongKe.Cursor = Cursors.Hand;
+            LogoThongKe.Image = (Image)resources.GetObject("LogoThongKe.Image");
+            LogoThongKe.Location = new Point(32, 0);
+            LogoThongKe.Name = "LogoThongKe";
+            LogoThongKe.Size = new Size(66, 55);
+            LogoThongKe.SizeMode = PictureBoxSizeMode.Zoom;
+            LogoThongKe.TabIndex = 6;
+            LogoThongKe.TabStop = false;
             // 
-            // lbHeThong
+            // PanelHeThong
             // 
-            lbHeThong.AutoSize = true;
-            lbHeThong.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lbHeThong.Location = new Point(30, 60);
-            lbHeThong.Name = "lbHeThong";
-            lbHeThong.Size = new Size(71, 20);
-            lbHeThong.TabIndex = 9;
-            lbHeThong.Text = "Hệ thống";
+            PanelHeThong.Controls.Add(btDangXuat);
+            PanelHeThong.Controls.Add(btDoiMatKhau);
+            PanelHeThong.Controls.Add(btThongTin);
+            PanelHeThong.Controls.Add(LogoHeThong);
+            PanelHeThong.Controls.Add(lbHeThong);
+            PanelHeThong.Cursor = Cursors.Hand;
+            PanelHeThong.Location = new Point(393, 0);
+            PanelHeThong.Margin = new Padding(0, 0, 0, 16);
+            PanelHeThong.MaximumSize = new Size(131, 178);
+            PanelHeThong.MinimumSize = new Size(131, 89);
+            PanelHeThong.Name = "PanelHeThong";
+            PanelHeThong.Size = new Size(131, 89);
+            PanelHeThong.TabIndex = 23;
+            PanelHeThong.Click += PanelHeThong_Click;
+            PanelHeThong.MouseEnter += PanelHeThong_MouseEnter;
+            PanelHeThong.MouseLeave += PanelHeThong_MouseLeave;
             // 
-            // LogoHeThong
+            // btDangXuat
             // 
-            LogoHeThong.Cursor = Cursors.Hand;
-            LogoHeThong.Image = (Image)resources.GetObject("LogoHeThong.Image");
-            LogoHeThong.Location = new Point(31, 1);
-            LogoHeThong.Name = "LogoHeThong";
-            LogoHeThong.Size = new Size(66, 55);
-            LogoHeThong.SizeMode = PictureBoxSizeMode.Zoom;
-            LogoHeThong.TabIndex = 8;
-            LogoHeThong.TabStop = false;
-            // 
-            // btThongTin
-            // 
-            btThongTin.BackColor = Color.FromArgb(255, 192, 192);
-            btThongTin.Cursor = Cursors.Hand;
-            btThongTin.FlatAppearance.BorderColor = Color.Black;
-            btThongTin.FlatStyle = FlatStyle.Flat;
-            btThongTin.Location = new Point(0, 93);
-            btThongTin.Name = "btThongTin";
-            btThongTin.Size = new Size(131, 29);
-            btThongTin.TabIndex = 6;
-            btThongTin.Text = "Thông tin";
-            btThongTin.TextAlign = ContentAlignment.MiddleLeft;
-            btThongTin.UseVisualStyleBackColor = false;
+            btDangXuat.BackColor = Color.FromArgb(255, 192, 192);
+            btDangXuat.Cursor = Cursors.Hand;
+            btDangXuat.FlatAppearance.BorderColor = Color.Black;
+            btDangXuat.FlatStyle = FlatStyle.Flat;
+            btDangXuat.Location = new Point(0, 149);
+            btDangXuat.Name = "btDangXuat";
+            btDangXuat.Size = new Size(131, 29);
+            btDangXuat.TabIndex = 8;
+            btDangXuat.Text = "Đăng xuất";
+            btDangXuat.TextAlign = ContentAlignment.MiddleLeft;
+            btDangXuat.UseVisualStyleBackColor = false;
             // 
             // btDoiMatKhau
             // 
@@ -443,40 +420,76 @@
             btDoiMatKhau.Text = "Đổi mật khẩu";
             btDoiMatKhau.TextAlign = ContentAlignment.MiddleLeft;
             btDoiMatKhau.UseVisualStyleBackColor = false;
-            btDoiMatKhau.Click += btDoiMatKhau_Click;
             // 
-            // btDangXuat
+            // btThongTin
             // 
-            btDangXuat.BackColor = Color.FromArgb(255, 192, 192);
-            btDangXuat.Cursor = Cursors.Hand;
-            btDangXuat.FlatAppearance.BorderColor = Color.Black;
-            btDangXuat.FlatStyle = FlatStyle.Flat;
-            btDangXuat.Location = new Point(0, 149);
-            btDangXuat.Name = "btDangXuat";
-            btDangXuat.Size = new Size(131, 29);
-            btDangXuat.TabIndex = 8;
-            btDangXuat.Text = "Đăng xuất";
-            btDangXuat.TextAlign = ContentAlignment.MiddleLeft;
-            btDangXuat.UseVisualStyleBackColor = false;
-            btDangXuat.Click += btDangXuat_Click;
+            btThongTin.BackColor = Color.FromArgb(255, 192, 192);
+            btThongTin.Cursor = Cursors.Hand;
+            btThongTin.FlatAppearance.BorderColor = Color.Black;
+            btThongTin.FlatStyle = FlatStyle.Flat;
+            btThongTin.Location = new Point(0, 93);
+            btThongTin.Name = "btThongTin";
+            btThongTin.Size = new Size(131, 29);
+            btThongTin.TabIndex = 6;
+            btThongTin.Text = "Thông tin";
+            btThongTin.TextAlign = ContentAlignment.MiddleLeft;
+            btThongTin.UseVisualStyleBackColor = false;
             // 
-            // PanelHeThong
+            // LogoHeThong
             // 
-            PanelHeThong.Controls.Add(btDangXuat);
-            PanelHeThong.Controls.Add(btDoiMatKhau);
-            PanelHeThong.Controls.Add(btThongTin);
-            PanelHeThong.Controls.Add(LogoHeThong);
-            PanelHeThong.Controls.Add(lbHeThong);
-            PanelHeThong.Cursor = Cursors.Hand;
-            PanelHeThong.Location = new Point(0, 430);
-            PanelHeThong.MaximumSize = new Size(131, 178);
-            PanelHeThong.MinimumSize = new Size(131, 89);
-            PanelHeThong.Name = "PanelHeThong";
-            PanelHeThong.Size = new Size(131, 89);
-            PanelHeThong.TabIndex = 18;
-            PanelHeThong.Click += PanelHeThong_Click;
-            PanelHeThong.MouseEnter += PanelHeThong_MouseEnter;
-            PanelHeThong.MouseLeave += PanelHeThong_MouseLeave;
+            LogoHeThong.Cursor = Cursors.Hand;
+            LogoHeThong.Image = (Image)resources.GetObject("LogoHeThong.Image");
+            LogoHeThong.Location = new Point(31, 1);
+            LogoHeThong.Name = "LogoHeThong";
+            LogoHeThong.Size = new Size(66, 55);
+            LogoHeThong.SizeMode = PictureBoxSizeMode.Zoom;
+            LogoHeThong.TabIndex = 8;
+            LogoHeThong.TabStop = false;
+            // 
+            // lbHeThong
+            // 
+            lbHeThong.AutoSize = true;
+            lbHeThong.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbHeThong.Location = new Point(30, 60);
+            lbHeThong.Name = "lbHeThong";
+            lbHeThong.Size = new Size(71, 20);
+            lbHeThong.TabIndex = 9;
+            lbHeThong.Text = "Hệ thống";
+            // 
+            // PanelThoat
+            // 
+            PanelThoat.Controls.Add(lbThoat);
+            PanelThoat.Controls.Add(LogoThoat);
+            PanelThoat.Cursor = Cursors.Hand;
+            PanelThoat.Location = new Point(524, 0);
+            PanelThoat.Margin = new Padding(0);
+            PanelThoat.Name = "PanelThoat";
+            PanelThoat.Size = new Size(131, 89);
+            PanelThoat.TabIndex = 26;
+            PanelThoat.Click += PanelThoat_Click;
+            PanelThoat.MouseEnter += PanelThoat_MouseEnter;
+            PanelThoat.MouseLeave += PanelThoat_MouseLeave;
+            // 
+            // lbThoat
+            // 
+            lbThoat.AutoSize = true;
+            lbThoat.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lbThoat.Location = new Point(39, 58);
+            lbThoat.Name = "lbThoat";
+            lbThoat.Size = new Size(47, 20);
+            lbThoat.TabIndex = 11;
+            lbThoat.Text = "Thoát";
+            // 
+            // LogoThoat
+            // 
+            LogoThoat.Cursor = Cursors.Hand;
+            LogoThoat.Image = (Image)resources.GetObject("LogoThoat.Image");
+            LogoThoat.Location = new Point(32, 0);
+            LogoThoat.Name = "LogoThoat";
+            LogoThoat.Size = new Size(66, 55);
+            LogoThoat.SizeMode = PictureBoxSizeMode.Zoom;
+            LogoThoat.TabIndex = 10;
+            LogoThoat.TabStop = false;
             // 
             // FormTrangChu
             // 
@@ -484,36 +497,33 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MistyRose;
             ClientSize = new Size(1403, 668);
-            Controls.Add(PanelGoiMon);
-            Controls.Add(PanelQuanLy);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(PanelAnhNen);
             Controls.Add(LogoUser);
             Controls.Add(label7);
             Controls.Add(lbWelcome);
             Controls.Add(pictureLogo);
-            Controls.Add(PanelThongKe);
-            Controls.Add(PanelHeThong);
-            Controls.Add(PanelThoat);
             Name = "FormTrangChu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trang chủ";
             ((System.ComponentModel.ISupportInitialize)pictureLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)LogoThongKe).EndInit();
             ((System.ComponentModel.ISupportInitialize)LogoUser).EndInit();
-            ((System.ComponentModel.ISupportInitialize)LogoThoat).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            PanelGoiMon.ResumeLayout(false);
+            PanelGoiMon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoGoiMon).EndInit();
             PanelQuanLy.ResumeLayout(false);
             PanelQuanLy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoQuanLy).EndInit();
-            PanelGoiMon.ResumeLayout(false);
-            PanelGoiMon.PerformLayout();
             PanelThongKe.ResumeLayout(false);
             PanelThongKe.PerformLayout();
-            PanelThoat.ResumeLayout(false);
-            PanelThoat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)LogoHeThong).EndInit();
+            ((System.ComponentModel.ISupportInitialize)LogoThongKe).EndInit();
             PanelHeThong.ResumeLayout(false);
             PanelHeThong.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoHeThong).EndInit();
+            PanelThoat.ResumeLayout(false);
+            PanelThoat.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoThoat).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -522,36 +532,37 @@
 
         private Panel PanelAnhNen;
         private PictureBox pictureLogo;
-        private Label lbGoiMon;
-        private Label lbQuanLy;
-        private PictureBox LogoThongKe;
-        private Label lbThongKe;
-        private Label lbThoat;
         private Label lbWelcome;
         private Label label7;
         private PictureBox LogoUser;
-        private PictureBox LogoThoat;
-        private PictureBox LogoGoiMon;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timerToCollapseThongKe;
+        private FlowLayoutPanel flowLayoutPanel1;
         private Panel PanelGoiMon;
+        private PictureBox LogoGoiMon;
+        private Label lbGoiMon;
+        private Panel PanelThongKe;
+        private Button btThongKeDoanhThu;
+        private Button btThongKeSanPham;
+        private Label lbThongKe;
+        private PictureBox LogoThongKe;
+        private Panel PanelHeThong;
+        private Button btDangXuat;
+        private Button btDoiMatKhau;
+        private Button btThongTin;
+        private PictureBox LogoHeThong;
+        private Label lbHeThong;
+        private Panel PanelThoat;
+        private Label lbThoat;
+        private PictureBox LogoThoat;
         private Panel PanelQuanLy;
-        private PictureBox LogoQuanLy;
-        private Button btQLNhanVien;
-        private Button btQLDanhMuc;
         private Button btQLTaiKhoan;
         private Button btQLHoaDon;
         private Button btQLSanPham;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
-        private Panel PanelThongKe;
-        private Panel PanelThoat;
-        private System.Windows.Forms.Timer timerToCollapseThongKe;
-        private Label lbHeThong;
-        private PictureBox LogoHeThong;
-        private Button btThongTin;
-        private Button btDoiMatKhau;
-        private Button btDangXuat;
-        private Panel PanelHeThong;
-        private Button btThongKeSanPham;
-        private Button btThongKeDoanhThu;
+        private Button btQLDanhMuc;
+        private Button btQLNhanVien;
+        private PictureBox LogoQuanLy;
+        private Label lbQuanLy;
     }
 }

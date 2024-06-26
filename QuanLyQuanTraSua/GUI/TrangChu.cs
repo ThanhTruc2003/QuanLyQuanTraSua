@@ -37,8 +37,8 @@ namespace QuanLyQuanTraSua.GUI
         {
             if (Authentication.loggedInUser.TenQuyen == "Nhân viên")
             {
-                PanelQuanLy.Enabled = false;
-                PanelThongKe.Enabled = false;
+                PanelQuanLy.Visible = false;
+                PanelThongKe.Visible = false;
             }
         }
 
