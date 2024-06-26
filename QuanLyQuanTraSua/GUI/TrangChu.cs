@@ -24,6 +24,22 @@ namespace QuanLyQuanTraSua.GUI
         {
             InitializeComponent();
             this.LoginForm = LoginForm;
+            showWelcome();
+            showFeatureByQuyen();
+        }
+
+        private void showWelcome()
+        {
+            lbWelcome.Text = "Xin Chào, " + Authentication.loggedInUser.TenNhanVien;
+        }
+
+        private void showFeatureByQuyen()
+        {
+            if (Authentication.loggedInUser.TenQuyen == "Nhân viên")
+            {
+                PanelQuanLy.Enabled = false;
+                PanelThongKe.Enabled = false;
+            }
         }
 
         private void AnForm()

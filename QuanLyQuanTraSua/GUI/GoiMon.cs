@@ -285,7 +285,7 @@ namespace QuanLyQuanTraSua.GUI
             chiTietHoaDonBLL = new ChiTietHoaDonBLL();
 
             HoaDonDTO dto_hoadon = new HoaDonDTO();
-            dto_hoadon.NguoiLapHoaDon = "2"; 
+            dto_hoadon.NguoiLapHoaDon = Authentication.loggedInUser.MaNhanVien; 
             dto_hoadon.NgayLapHoaDon = DateTime.Now;
             decimal tongTien = 0;
 

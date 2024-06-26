@@ -4,26 +4,43 @@ using System.Data;
 using DTO;
 using DAL;
 using QuanLyQuanTraSua.DAL;
+using QuanLyQuanTraSua.DTO;
 
 namespace DAL
 {
     public class DangNhapDAL
     {
-		private SqlConnection conn = ConnectDB.GetConnection();
-		public bool checkDangNhap(string TaiKhoan, string MatKhau)
+        private SqlConnection conn = ConnectDB.GetConnection();
+        public LoggedInUser checkDangNhap(string TaiKhoan, string MatKhau)
         {
-            string querry = "SELECT * FROM TAIKHOAN WHERE Username = '" + TaiKhoan + "'AND Password = '" + MatKhau + "'";
+            LoggedInUser loggedInUser = null;
+            string query = @"Select nv.MaNhanVien, nv.HoTen, q.TenQuyen, tk.MaTaiKhoan
+                            from NHANVIEN nv, TAIKHOAN tk, QUYEN Q
+                            where nv.MaNhanVien = tk.MaNhanVien
+                            and tk.MaQuyen = q.MaQuyen
+                            and tk.Username  = @Username
+                            and tk.Password = @Password";
 
-            SqlDataAdapter sda = new SqlDataAdapter(querry, conn);
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Username", TaiKhoan);
+            cmd.Parameters.AddWithValue("@Password", MatKhau);
 
-            DataTable dtable = new DataTable();
-            sda.Fill(dtable);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
 
-            if (dtable.Rows.Count > 0)
+
+            if (reader.Read())
             {
-                return true;
+                string maNhanvien = reader.GetString(reader.GetOrdinal("MaNhanVien"));
+                string tenNhanvien = reader.GetString(reader.GetOrdinal("HoTen"));
+                string tenQuyen = reader.GetString(reader.GetOrdinal("TenQuyen"));
+                string maTaikhoan = reader.GetString(reader.GetOrdinal("MaTaiKhoan"));
+
+                loggedInUser = new LoggedInUser(maNhanvien, tenNhanvien, tenQuyen, maTaikhoan);
             }
-            return false;
+            conn.Close();
+            reader.Close();
+            return loggedInUser;
         }
     }
 }

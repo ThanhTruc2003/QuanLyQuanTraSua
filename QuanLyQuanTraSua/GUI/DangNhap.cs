@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using DTO;
+using QuanLyQuanTraSua.DTO;
 using QuanLyQuanTraSua.GUI;
 
 namespace QuanLyQuanTraSua
@@ -46,10 +47,12 @@ namespace QuanLyQuanTraSua
             else
             {
                 DangNhapBLL bll = new DangNhapBLL();
-                bool checkDangNhap = bll.Check(new DangNhapDTO(TaiKhoan, MatKhau));
-                if (checkDangNhap)
+                LoggedInUser loggedInUser = bll.Check(new DangNhapDTO(TaiKhoan, MatKhau));
+                if (loggedInUser != null)
                 {
                     MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Authentication.loggedInUser = loggedInUser;
+
                     FormTrangChu Home = new FormTrangChu(this);
                     Home.FormClosed += Home_FormClosed;
 

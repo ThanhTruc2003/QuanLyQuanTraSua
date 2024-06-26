@@ -37,7 +37,7 @@
             LogoThongKe = new PictureBox();
             lbThongKe = new Label();
             lbThoat = new Label();
-            lbThongTin = new Label();
+            lbWelcome = new Label();
             label7 = new Label();
             LogoUser = new PictureBox();
             LogoThoat = new PictureBox();
@@ -150,15 +150,15 @@
             lbThoat.TabIndex = 11;
             lbThoat.Text = "Thoát";
             // 
-            // lbThongTin
+            // lbWelcome
             // 
-            lbThongTin.AutoSize = true;
-            lbThongTin.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lbThongTin.Location = new Point(1196, 34);
-            lbThongTin.Name = "lbThongTin";
-            lbThongTin.Size = new Size(80, 23);
-            lbThongTin.TabIndex = 12;
-            lbThongTin.Text = "Xin chào,";
+            lbWelcome.AutoSize = true;
+            lbWelcome.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lbWelcome.Location = new Point(1196, 34);
+            lbWelcome.Name = "lbWelcome";
+            lbWelcome.Size = new Size(80, 23);
+            lbWelcome.TabIndex = 12;
+            lbWelcome.Text = "Xin chào,";
             // 
             // label7
             // 
@@ -202,6 +202,7 @@
             // 
             // PanelQuanLy
             // 
+            PanelQuanLy.BackColor = Color.MistyRose;
             PanelQuanLy.Controls.Add(btQLTaiKhoan);
             PanelQuanLy.Controls.Add(btQLHoaDon);
             PanelQuanLy.Controls.Add(btQLSanPham);
@@ -488,7 +489,7 @@
             Controls.Add(PanelAnhNen);
             Controls.Add(LogoUser);
             Controls.Add(label7);
-            Controls.Add(lbThongTin);
+            Controls.Add(lbWelcome);
             Controls.Add(pictureLogo);
             Controls.Add(PanelThongKe);
             Controls.Add(PanelHeThong);
@@ -526,7 +527,7 @@
         private PictureBox LogoThongKe;
         private Label lbThongKe;
         private Label lbThoat;
-        private Label lbThongTin;
+        private Label lbWelcome;
         private Label label7;
         private PictureBox LogoUser;
         private PictureBox LogoThoat;

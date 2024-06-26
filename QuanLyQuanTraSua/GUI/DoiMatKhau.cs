@@ -23,7 +23,7 @@ namespace QuanLyQuanTraSua.GUI
         {
             try
             {
-                if (taiKhoanBLL.changePassword(maTk: "1", currentPassword: txtCurrentPassword.Text, newPassword: txtNewPassword.Text))
+                if (taiKhoanBLL.changePassword(maTk: Authentication.loggedInUser.MaTaiKhoan, currentPassword: txtCurrentPassword.Text, newPassword: txtNewPassword.Text))
                 {
                     MessageBox.Show("Đổi mật khẩu thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clearInputs();
