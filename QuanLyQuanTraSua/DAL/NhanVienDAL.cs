@@ -13,8 +13,7 @@ namespace DAL
 		public DataTable getAllEmployee()
         {
             string query = @"SELECT *
-                             FROM NHANVIEN nv
-                             ORDER BY CAST(nv.MaNhanVien AS INT) ASC";
+                             FROM NHANVIEN nv";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);
@@ -25,7 +24,7 @@ namespace DAL
         {
             string query = @"SELECT *
                              FROM NHANVIEN nv
-                             WHERE nv.HoTen LIKE @TenNhanVien ORDER BY CAST(nv.MaNhanVien AS INT) ASC";
+                             WHERE nv.HoTen LIKE @TenNhanVien";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             ada.SelectCommand.Parameters.AddWithValue("@TenNhanVien", "%" + TenNhanVien + "%");
             DataTable table = new DataTable();

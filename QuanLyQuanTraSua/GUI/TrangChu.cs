@@ -19,8 +19,8 @@ namespace QuanLyQuanTraSua.GUI
         private FormThongKeSanPham ThongKeSanPham;
         private FormDoiMatKhau doiMatKhau;
 
-        private Form LoginForm;
-        public FormTrangChu(Form LoginForm)
+        private FormLogin LoginForm;
+        public FormTrangChu(FormLogin LoginForm)
         {
             InitializeComponent();
             this.LoginForm = LoginForm;
@@ -30,13 +30,16 @@ namespace QuanLyQuanTraSua.GUI
 
         private void showWelcome()
         {
-            lbWelcome.Text = "Xin Chào, " + Authentication.loggedInUser.TenNhanVien;
+            lbWelcome.Text = "Xin chào, " + Authentication.loggedInUser.TenNhanVien;
         }
 
         private void showFeatureByQuyen()
         {
             if (Authentication.loggedInUser.TenQuyen == "Nhân viên")
             {
+                btThongTin.Size = new Size(131, 29);
+                btDoiMatKhau.Size = new Size(131, 29);
+                btDangXuat.Size = new Size(131, 29);
                 PanelQuanLy.Visible = false;
                 PanelThongKe.Visible = false;
             }
@@ -251,6 +254,7 @@ namespace QuanLyQuanTraSua.GUI
             if (ketqua == DialogResult.Yes)
             {
                 this.Dispose();
+                LoginForm.ClearTextBoxes();
                 LoginForm.Show();
             }
         }

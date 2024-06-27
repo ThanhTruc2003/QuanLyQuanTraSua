@@ -34,8 +34,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.MistyRose;
+            ClientSize = new Size(511, 497);
+            ControlBox = false;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormThongTin";
+            StartPosition = FormStartPosition.Manual;
             Text = "Thông tin cá nhân";
             ResumeLayout(false);
         }

@@ -48,7 +48,6 @@ namespace QuanLyQuanTraSua.GUI
             {
 
             }
-
         }
 
         private void buttonXemChiTiet_Click(object sender, EventArgs e)

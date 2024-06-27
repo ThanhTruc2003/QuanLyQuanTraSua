@@ -41,17 +41,11 @@
             gBCapNhatMon = new GroupBox();
             btSuaMon = new Button();
             dgvCapNhatMon = new DataGridView();
-            MaSanPham = new DataGridViewTextBoxColumn();
-            TenMon = new DataGridViewTextBoxColumn();
-            SoLuong = new DataGridViewTextBoxColumn();
-            DonGia = new DataGridViewTextBoxColumn();
-            Size = new DataGridViewTextBoxColumn();
             btXoaMon = new Button();
             btThemMon = new Button();
             lbTongTien = new Label();
             txbTongTien = new TextBox();
             gBThongTinMon = new GroupBox();
-            lbMaSanPham = new Label();
             txbSize = new TextBox();
             nUDSoLuong = new NumericUpDown();
             txbDonGia = new TextBox();
@@ -60,12 +54,20 @@
             lbSoLuong = new Label();
             lbSize = new Label();
             lbTenMon = new Label();
+            lbMaSanPham = new Label();
             gbTimKiem = new GroupBox();
             txbTenMon = new TextBox();
             lbTimKiemMon = new Label();
             cbDanhMuc = new ComboBox();
             lbTimKiemTheoDanhMuc = new Label();
             Menu = new FlowLayoutPanel();
+            printDocument = new System.Drawing.Printing.PrintDocument();
+            printPreviewDialog = new PrintPreviewDialog();
+            MaSanPham = new DataGridViewTextBoxColumn();
+            TenMon = new DataGridViewTextBoxColumn();
+            SoLuong = new DataGridViewTextBoxColumn();
+            DonGia = new DataGridViewTextBoxColumn();
+            Size = new DataGridViewTextBoxColumn();
             ThongTinMon.SuspendLayout();
             gBCapNhatMon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCapNhatMon).BeginInit();
@@ -171,46 +173,6 @@
             dgvCapNhatMon.TabIndex = 13;
             dgvCapNhatMon.CellClick += dgvCapNhatMon_CellClick;
             // 
-            // MaSanPham
-            // 
-            MaSanPham.HeaderText = "Mã SP";
-            MaSanPham.MinimumWidth = 6;
-            MaSanPham.Name = "MaSanPham";
-            MaSanPham.Visible = false;
-            // 
-            // TenMon
-            // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            TenMon.DefaultCellStyle = dataGridViewCellStyle2;
-            TenMon.HeaderText = "Tên món";
-            TenMon.MinimumWidth = 6;
-            TenMon.Name = "TenMon";
-            // 
-            // SoLuong
-            // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            SoLuong.DefaultCellStyle = dataGridViewCellStyle3;
-            SoLuong.HeaderText = "Số lượng";
-            SoLuong.MinimumWidth = 6;
-            SoLuong.Name = "SoLuong";
-            // 
-            // DonGia
-            // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            DonGia.DefaultCellStyle = dataGridViewCellStyle4;
-            DonGia.HeaderText = "Đơn giá";
-            DonGia.MinimumWidth = 6;
-            DonGia.Name = "DonGia";
-            // 
-            // Size
-            // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Size.DefaultCellStyle = dataGridViewCellStyle5;
-            Size.HeaderText = "Size";
-            Size.MinimumWidth = 6;
-            Size.Name = "Size";
-            // 
             // btXoaMon
             // 
             btXoaMon.BackgroundImage = (Image)resources.GetObject("btXoaMon.BackgroundImage");
@@ -277,16 +239,6 @@
             gBThongTinMon.TabIndex = 0;
             gBThongTinMon.TabStop = false;
             gBThongTinMon.Text = "Thông tin món";
-            // 
-            // lbMaSanPham
-            // 
-            lbMaSanPham.AutoSize = true;
-            lbMaSanPham.Location = new Point(121, 33);
-            lbMaSanPham.Name = "lbMaSanPham";
-            lbMaSanPham.Size = new Size(50, 20);
-            lbMaSanPham.TabIndex = 11;
-            lbMaSanPham.Text = "label1";
-            lbMaSanPham.Visible = false;
             // 
             // txbSize
             // 
@@ -365,6 +317,16 @@
             lbTenMon.TabIndex = 4;
             lbTenMon.Text = "Tên món:";
             // 
+            // lbMaSanPham
+            // 
+            lbMaSanPham.AutoSize = true;
+            lbMaSanPham.Location = new Point(121, 33);
+            lbMaSanPham.Name = "lbMaSanPham";
+            lbMaSanPham.Size = new Size(50, 20);
+            lbMaSanPham.TabIndex = 11;
+            lbMaSanPham.Text = "label1";
+            lbMaSanPham.Visible = false;
+            // 
             // gbTimKiem
             // 
             gbTimKiem.Controls.Add(txbTenMon);
@@ -426,6 +388,65 @@
             Menu.Size = new Size(776, 400);
             Menu.TabIndex = 2;
             // 
+            // printDocument
+            // 
+            printDocument.PrintPage += printDocument_PrintPage;
+            // 
+            // printPreviewDialog
+            // 
+            printPreviewDialog.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog.ClientSize = new Size(400, 300);
+            printPreviewDialog.Enabled = true;
+            printPreviewDialog.Icon = (Icon)resources.GetObject("printPreviewDialog.Icon");
+            printPreviewDialog.Name = "printPreviewDialog";
+            printPreviewDialog.Visible = false;
+            // 
+            // MaSanPham
+            // 
+            MaSanPham.DataPropertyName = "MaSanPham";
+            MaSanPham.HeaderText = "Mã SP";
+            MaSanPham.MinimumWidth = 6;
+            MaSanPham.Name = "MaSanPham";
+            MaSanPham.Visible = false;
+            // 
+            // TenMon
+            // 
+            TenMon.DataPropertyName = "TenSanPham";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            TenMon.DefaultCellStyle = dataGridViewCellStyle2;
+            TenMon.HeaderText = "Tên món";
+            TenMon.MinimumWidth = 6;
+            TenMon.Name = "TenMon";
+            // 
+            // SoLuong
+            // 
+            SoLuong.DataPropertyName = "SoLuong";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            SoLuong.DefaultCellStyle = dataGridViewCellStyle3;
+            SoLuong.HeaderText = "Số lượng";
+            SoLuong.MinimumWidth = 6;
+            SoLuong.Name = "SoLuong";
+            // 
+            // DonGia
+            // 
+            DonGia.DataPropertyName = "DonGia";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DonGia.DefaultCellStyle = dataGridViewCellStyle4;
+            DonGia.HeaderText = "Đơn giá";
+            DonGia.MinimumWidth = 6;
+            DonGia.Name = "DonGia";
+            // 
+            // Size
+            // 
+            Size.DataPropertyName = "Size";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Size.DefaultCellStyle = dataGridViewCellStyle5;
+            Size.HeaderText = "Size";
+            Size.MinimumWidth = 6;
+            Size.Name = "Size";
+            // 
             // FormGoiMon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -477,11 +498,13 @@
         private DataGridView dgvCapNhatMon;
         private TextBox txbSize;
         private Button btSuaMon;
+        private Label lbMaSanPham;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private PrintPreviewDialog printPreviewDialog;
         private DataGridViewTextBoxColumn MaSanPham;
         private DataGridViewTextBoxColumn TenMon;
         private DataGridViewTextBoxColumn SoLuong;
         private DataGridViewTextBoxColumn DonGia;
         private DataGridViewTextBoxColumn Size;
-        private Label lbMaSanPham;
     }
 }

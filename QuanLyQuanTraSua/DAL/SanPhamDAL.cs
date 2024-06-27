@@ -13,7 +13,7 @@ namespace DAL
 		public DataTable getProduct(string MaDanhMuc)
         {
             string query = @"SELECT sp.MaSanPham, sp.TenSanPham, sp.Size, sp.DonGia, dm.TenDanhMuc AS LoaiSanPham, sp.HinhAnh FROM SANPHAM sp INNER JOIN DANHMUCSANPHAM dm ON sp.MaDanhMuc = dm.MaDanhMuc
-                             WHERE sp.MaDanhMuc = '" + MaDanhMuc + "' ORDER BY CAST(sp.MaSanPham AS INT) ASC";
+                             WHERE sp.MaDanhMuc = '" + MaDanhMuc + "'";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);
@@ -22,8 +22,7 @@ namespace DAL
 
         public DataTable getAllProduct()
         {
-            string query = @"SELECT sp.MaSanPham, sp.TenSanPham, sp.Size, sp.DonGia, dm.TenDanhMuc AS LoaiSanPham, sp.HinhAnh FROM SANPHAM sp, DANHMUCSANPHAM dm WHERE sp.MaDanhMuc = dm.MaDanhMuc
-                             ORDER BY CAST(sp.MaSanPham AS INT) ASC";
+            string query = @"SELECT sp.MaSanPham, sp.TenSanPham, sp.Size, sp.DonGia, dm.TenDanhMuc AS LoaiSanPham, sp.HinhAnh FROM SANPHAM sp, DANHMUCSANPHAM dm WHERE sp.MaDanhMuc = dm.MaDanhMuc";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);
@@ -42,7 +41,7 @@ namespace DAL
         public DataTable getDataByName(string tenSanPham)
         {
             string query = @"SELECT sp.MaSanPham, sp.TenSanPham, sp.Size, sp.DonGia, dm.TenDanhMuc AS LoaiSanPham, sp.HinhAnh FROM SANPHAM sp, DANHMUCSANPHAM dm 
-                             WHERE sp.MaDanhMuc = dm.MaDanhMuc AND TenSanPham LIKE @tenSanPham ORDER BY CAST(sp.MaSanPham AS INT) ASC";
+                             WHERE sp.MaDanhMuc = dm.MaDanhMuc AND TenSanPham LIKE @tenSanPham";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             ada.SelectCommand.Parameters.AddWithValue("@tenSanPham", "%" + tenSanPham + "%");
             DataTable table = new DataTable();

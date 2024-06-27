@@ -1,4 +1,6 @@
-﻿namespace QuanLyQuanTraSua.GUI
+﻿using System.Windows.Forms;
+
+namespace QuanLyQuanTraSua.GUI
 {
     partial class FormTrangChu
     {
@@ -33,7 +35,6 @@
             PanelAnhNen = new Panel();
             pictureLogo = new PictureBox();
             lbWelcome = new Label();
-            label7 = new Label();
             LogoUser = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
@@ -103,25 +104,17 @@
             // lbWelcome
             // 
             lbWelcome.AutoSize = true;
+            lbWelcome.FlatStyle = FlatStyle.Popup;
             lbWelcome.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lbWelcome.Location = new Point(1196, 34);
+            lbWelcome.Location = new Point(1165, 34);
             lbWelcome.Name = "lbWelcome";
-            lbWelcome.Size = new Size(80, 23);
+            lbWelcome.Size = new Size(0, 23);
             lbWelcome.TabIndex = 12;
-            lbWelcome.Text = "Xin chào,";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(1179, 30);
-            label7.Name = "label7";
-            label7.Size = new Size(0, 20);
-            label7.TabIndex = 13;
             // 
             // LogoUser
             // 
             LogoUser.Image = (Image)resources.GetObject("LogoUser.Image");
-            LogoUser.Location = new Point(1132, 15);
+            LogoUser.Location = new Point(1102, 15);
             LogoUser.Name = "LogoUser";
             LogoUser.Size = new Size(64, 55);
             LogoUser.SizeMode = PictureBoxSizeMode.Zoom;
@@ -154,6 +147,8 @@
             flowLayoutPanel1.Controls.Add(PanelThoat);
             flowLayoutPanel1.Location = new Point(0, 89);
             flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.MaximumSize = new Size(131, 578);
+            flowLayoutPanel1.MinimumSize = new Size(131, 578);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(131, 578);
             flowLayoutPanel1.TabIndex = 16;
@@ -164,11 +159,12 @@
             PanelGoiMon.Controls.Add(LogoGoiMon);
             PanelGoiMon.Controls.Add(lbGoiMon);
             PanelGoiMon.Cursor = Cursors.Hand;
-            PanelGoiMon.Location = new Point(0, 16);
-            PanelGoiMon.Margin = new Padding(0, 16, 0, 16);
+            PanelGoiMon.Location = new Point(0, 30);
+            PanelGoiMon.Margin = new Padding(0, 30, 0, 16);
             PanelGoiMon.Name = "PanelGoiMon";
             PanelGoiMon.Size = new Size(131, 95);
             PanelGoiMon.TabIndex = 24;
+            PanelGoiMon.Click += PanelGoiMon_Click;
             PanelGoiMon.MouseEnter += PanelGoiMon_MouseEnter;
             PanelGoiMon.MouseLeave += PanelGoiMon_MouseLeave;
             // 
@@ -205,7 +201,7 @@
             PanelQuanLy.Controls.Add(LogoQuanLy);
             PanelQuanLy.Controls.Add(lbQuanLy);
             PanelQuanLy.Cursor = Cursors.Hand;
-            PanelQuanLy.Location = new Point(131, 0);
+            PanelQuanLy.Location = new Point(0, 141);
             PanelQuanLy.Margin = new Padding(0, 0, 0, 16);
             PanelQuanLy.MaximumSize = new Size(131, 236);
             PanelQuanLy.MinimumSize = new Size(131, 89);
@@ -223,11 +219,12 @@
             btQLTaiKhoan.FlatStyle = FlatStyle.Flat;
             btQLTaiKhoan.Location = new Point(0, 205);
             btQLTaiKhoan.Name = "btQLTaiKhoan";
-            btQLTaiKhoan.Size = new Size(131, 31);
+            btQLTaiKhoan.Size = new Size(110, 29);
             btQLTaiKhoan.TabIndex = 10;
             btQLTaiKhoan.Text = "Tài khoản";
             btQLTaiKhoan.TextAlign = ContentAlignment.MiddleLeft;
             btQLTaiKhoan.UseVisualStyleBackColor = false;
+            btQLTaiKhoan.Click += btQLTaiKhoan_Click;
             // 
             // btQLHoaDon
             // 
@@ -237,11 +234,12 @@
             btQLHoaDon.FlatStyle = FlatStyle.Flat;
             btQLHoaDon.Location = new Point(0, 177);
             btQLHoaDon.Name = "btQLHoaDon";
-            btQLHoaDon.Size = new Size(131, 29);
+            btQLHoaDon.Size = new Size(110, 29);
             btQLHoaDon.TabIndex = 9;
             btQLHoaDon.Text = "Hóa đơn";
             btQLHoaDon.TextAlign = ContentAlignment.MiddleLeft;
             btQLHoaDon.UseVisualStyleBackColor = false;
+            btQLHoaDon.Click += btQLHoaDon_Click;
             // 
             // btQLSanPham
             // 
@@ -251,11 +249,12 @@
             btQLSanPham.FlatStyle = FlatStyle.Flat;
             btQLSanPham.Location = new Point(0, 149);
             btQLSanPham.Name = "btQLSanPham";
-            btQLSanPham.Size = new Size(131, 29);
+            btQLSanPham.Size = new Size(110, 29);
             btQLSanPham.TabIndex = 8;
             btQLSanPham.Text = "Sản phẩm";
             btQLSanPham.TextAlign = ContentAlignment.MiddleLeft;
             btQLSanPham.UseVisualStyleBackColor = false;
+            btQLSanPham.Click += btQLSanPham_Click;
             // 
             // btQLDanhMuc
             // 
@@ -265,11 +264,12 @@
             btQLDanhMuc.FlatStyle = FlatStyle.Flat;
             btQLDanhMuc.Location = new Point(0, 121);
             btQLDanhMuc.Name = "btQLDanhMuc";
-            btQLDanhMuc.Size = new Size(131, 29);
+            btQLDanhMuc.Size = new Size(110, 29);
             btQLDanhMuc.TabIndex = 7;
             btQLDanhMuc.Text = "Danh mục";
             btQLDanhMuc.TextAlign = ContentAlignment.MiddleLeft;
             btQLDanhMuc.UseVisualStyleBackColor = false;
+            btQLDanhMuc.Click += btQLDanhMuc_Click;
             // 
             // btQLNhanVien
             // 
@@ -279,11 +279,12 @@
             btQLNhanVien.FlatStyle = FlatStyle.Flat;
             btQLNhanVien.Location = new Point(0, 93);
             btQLNhanVien.Name = "btQLNhanVien";
-            btQLNhanVien.Size = new Size(131, 29);
+            btQLNhanVien.Size = new Size(110, 29);
             btQLNhanVien.TabIndex = 6;
             btQLNhanVien.Text = "Nhân viên";
             btQLNhanVien.TextAlign = ContentAlignment.MiddleLeft;
             btQLNhanVien.UseVisualStyleBackColor = false;
+            btQLNhanVien.Click += btQLNhanVien_Click;
             // 
             // LogoQuanLy
             // 
@@ -313,7 +314,7 @@
             PanelThongKe.Controls.Add(lbThongKe);
             PanelThongKe.Controls.Add(LogoThongKe);
             PanelThongKe.Cursor = Cursors.Hand;
-            PanelThongKe.Location = new Point(262, 0);
+            PanelThongKe.Location = new Point(0, 246);
             PanelThongKe.Margin = new Padding(0, 0, 0, 16);
             PanelThongKe.MaximumSize = new Size(131, 156);
             PanelThongKe.MinimumSize = new Size(131, 89);
@@ -332,11 +333,12 @@
             btThongKeDoanhThu.FlatStyle = FlatStyle.Flat;
             btThongKeDoanhThu.Location = new Point(0, 96);
             btThongKeDoanhThu.Name = "btThongKeDoanhThu";
-            btThongKeDoanhThu.Size = new Size(131, 29);
+            btThongKeDoanhThu.Size = new Size(110, 29);
             btThongKeDoanhThu.TabIndex = 8;
             btThongKeDoanhThu.Text = "Doanh thu";
             btThongKeDoanhThu.TextAlign = ContentAlignment.MiddleLeft;
             btThongKeDoanhThu.UseVisualStyleBackColor = false;
+            btThongKeDoanhThu.Click += btDoanhThu_Click;
             // 
             // btThongKeSanPham
             // 
@@ -346,11 +348,12 @@
             btThongKeSanPham.FlatStyle = FlatStyle.Flat;
             btThongKeSanPham.Location = new Point(0, 125);
             btThongKeSanPham.Name = "btThongKeSanPham";
-            btThongKeSanPham.Size = new Size(131, 29);
+            btThongKeSanPham.Size = new Size(110, 31);
             btThongKeSanPham.TabIndex = 8;
             btThongKeSanPham.Text = "Sản phẩm";
             btThongKeSanPham.TextAlign = ContentAlignment.MiddleLeft;
             btThongKeSanPham.UseVisualStyleBackColor = false;
+            btThongKeSanPham.Click += btThongKeSanPham_Click;
             // 
             // lbThongKe
             // 
@@ -381,7 +384,7 @@
             PanelHeThong.Controls.Add(LogoHeThong);
             PanelHeThong.Controls.Add(lbHeThong);
             PanelHeThong.Cursor = Cursors.Hand;
-            PanelHeThong.Location = new Point(393, 0);
+            PanelHeThong.Location = new Point(0, 351);
             PanelHeThong.Margin = new Padding(0, 0, 0, 16);
             PanelHeThong.MaximumSize = new Size(131, 178);
             PanelHeThong.MinimumSize = new Size(131, 89);
@@ -400,11 +403,12 @@
             btDangXuat.FlatStyle = FlatStyle.Flat;
             btDangXuat.Location = new Point(0, 149);
             btDangXuat.Name = "btDangXuat";
-            btDangXuat.Size = new Size(131, 29);
+            btDangXuat.Size = new Size(110, 29);
             btDangXuat.TabIndex = 8;
             btDangXuat.Text = "Đăng xuất";
             btDangXuat.TextAlign = ContentAlignment.MiddleLeft;
             btDangXuat.UseVisualStyleBackColor = false;
+            btDangXuat.Click += btDangXuat_Click;
             // 
             // btDoiMatKhau
             // 
@@ -415,11 +419,12 @@
             btDoiMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btDoiMatKhau.Location = new Point(0, 121);
             btDoiMatKhau.Name = "btDoiMatKhau";
-            btDoiMatKhau.Size = new Size(131, 29);
+            btDoiMatKhau.Size = new Size(110, 29);
             btDoiMatKhau.TabIndex = 7;
             btDoiMatKhau.Text = "Đổi mật khẩu";
             btDoiMatKhau.TextAlign = ContentAlignment.MiddleLeft;
             btDoiMatKhau.UseVisualStyleBackColor = false;
+            btDoiMatKhau.Click += btDoiMatKhau_Click;
             // 
             // btThongTin
             // 
@@ -429,7 +434,7 @@
             btThongTin.FlatStyle = FlatStyle.Flat;
             btThongTin.Location = new Point(0, 93);
             btThongTin.Name = "btThongTin";
-            btThongTin.Size = new Size(131, 29);
+            btThongTin.Size = new Size(110, 29);
             btThongTin.TabIndex = 6;
             btThongTin.Text = "Thông tin";
             btThongTin.TextAlign = ContentAlignment.MiddleLeft;
@@ -461,7 +466,7 @@
             PanelThoat.Controls.Add(lbThoat);
             PanelThoat.Controls.Add(LogoThoat);
             PanelThoat.Cursor = Cursors.Hand;
-            PanelThoat.Location = new Point(524, 0);
+            PanelThoat.Location = new Point(0, 456);
             PanelThoat.Margin = new Padding(0);
             PanelThoat.Name = "PanelThoat";
             PanelThoat.Size = new Size(131, 89);
@@ -500,7 +505,6 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(PanelAnhNen);
             Controls.Add(LogoUser);
-            Controls.Add(label7);
             Controls.Add(lbWelcome);
             Controls.Add(pictureLogo);
             Name = "FormTrangChu";
@@ -533,7 +537,6 @@
         private Panel PanelAnhNen;
         private PictureBox pictureLogo;
         private Label lbWelcome;
-        private Label label7;
         private PictureBox LogoUser;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;

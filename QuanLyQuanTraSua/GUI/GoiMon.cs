@@ -3,6 +3,7 @@ using DAL;
 using DTO;
 using QuanLyQuanTraSua.BLL;
 using QuanLyQuanTraSua.DTO;
+using QuanLyQuanTraSua.Properties;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -16,10 +17,13 @@ namespace QuanLyQuanTraSua.GUI
         private SanPhamBLL sanPhamBLL;
         private HoaDonBLL hoaDonBLL;
         private ChiTietHoaDonBLL chiTietHoaDonBLL;
+        private List<ChiTietHoaDonDTO> chiTietHoaDonList;
+        private int maHoaDon;
 
         public FormGoiMon()
         {
             InitializeComponent();
+            maHoaDon = maHoaDon;
         }
 
         private void FormGoiMon_Load(object sender, EventArgs e)
@@ -181,7 +185,6 @@ namespace QuanLyQuanTraSua.GUI
                     totalMoney += donGia * soLuong;
                 }
             }
-
             txbTongTien.Text = totalMoney.ToString() + " đ";
         }
 
@@ -213,12 +216,15 @@ namespace QuanLyQuanTraSua.GUI
         private void dgvCapNhatMon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            DataGridViewRow selected = dgvCapNhatMon.Rows[index];
-            lbMaSanPham.Text = selected.Cells[0].Value.ToString();
-            txbTenMon1.Text = selected.Cells[1].Value.ToString();
-            nUDSoLuong.Value = decimal.Parse(selected.Cells[2].Value.ToString());
-            txbDonGia.Text = selected.Cells[3].Value.ToString();
-            txbSize.Text = selected.Cells[4].Value.ToString();
+            if (index > 0)
+            {
+                DataGridViewRow selected = dgvCapNhatMon.Rows[index];
+                lbMaSanPham.Text = selected.Cells[0].Value.ToString();
+                txbTenMon1.Text = selected.Cells[1].Value.ToString();
+                nUDSoLuong.Value = decimal.Parse(selected.Cells[2].Value.ToString());
+                txbDonGia.Text = selected.Cells[3].Value.ToString();
+                txbSize.Text = selected.Cells[4].Value.ToString();
+            }               
         }
 
         private void btSuaMon_Click(object sender, EventArgs e)
@@ -285,11 +291,11 @@ namespace QuanLyQuanTraSua.GUI
             chiTietHoaDonBLL = new ChiTietHoaDonBLL();
 
             HoaDonDTO dto_hoadon = new HoaDonDTO();
-            dto_hoadon.NguoiLapHoaDon = Authentication.loggedInUser.MaNhanVien; 
+            dto_hoadon.NguoiLapHoaDon = Authentication.loggedInUser.MaNhanVien;
             dto_hoadon.NgayLapHoaDon = DateTime.Now;
             decimal tongTien = 0;
 
-            List<ChiTietHoaDonDTO> chiTietHoaDonList = new List<ChiTietHoaDonDTO>();
+            chiTietHoaDonList = new List<ChiTietHoaDonDTO>();
 
             foreach (DataGridViewRow row in dgvCapNhatMon.Rows)
             {
@@ -308,7 +314,7 @@ namespace QuanLyQuanTraSua.GUI
                 }
             }
             dto_hoadon.TongTien = tongTien;
-            int maHoaDon = hoaDonBLL.Insert(dto_hoadon);
+            maHoaDon = hoaDonBLL.Insert(dto_hoadon);
             if (maHoaDon > 0)
             {
                 foreach (var chiTiet in chiTietHoaDonList)
@@ -320,7 +326,7 @@ namespace QuanLyQuanTraSua.GUI
                 {
                     MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dgvCapNhatMon.Rows.Clear();
-                    txbTongTien.Clear(); 
+                    txbTongTien.Clear();
                 }
                 else
                 {
@@ -331,6 +337,108 @@ namespace QuanLyQuanTraSua.GUI
             {
                 MessageBox.Show("Thanh toán thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Image image = Resources.Logo;
+            e.Graphics.DrawImage(image, 25, 0, image.Width / 3, image.Height / 3);
+            e.Graphics.DrawString("NODEADLINE MILK TEA", new Font("Verdana", 25, FontStyle.Bold), Brushes.Black, new Point(250, 65));
+            e.Graphics.DrawString("HÓA ĐƠN BÁN HÀNG", new Font("Verdana", 25, FontStyle.Bold), Brushes.Black, new Point(235, 180));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, 250));
+            e.Graphics.DrawString("Nhân viên: " + Authentication.loggedInUser.TenNhanVien, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, 300));
+            int Sohoadon = maHoaDon;
+            int ValueX;
+            if (Sohoadon >= 100)
+            {
+                ValueX = 655;
+            }    
+            else if (Sohoadon >= 10)
+            {
+                ValueX = 666;
+            }    
+            else
+            {
+                ValueX = 677;
+            }    
+            e.Graphics.DrawString("Số hóa đơn: " + Sohoadon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(ValueX, 250));
+            e.Graphics.DrawString("In lúc: " + DateTime.Now.ToString("HH:mm"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(700, 300));
+            e.Graphics.DrawString("------------------------------------------------------------------------------------------------------------",
+                                  new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, 350));
+            e.Graphics.DrawString("Tên món", new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(30, 380));
+            e.Graphics.DrawString("Size", new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(250, 380));
+            e.Graphics.DrawString("Số lượng", new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(370, 380));
+            e.Graphics.DrawString("Đơn giá", new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(540, 380));
+            e.Graphics.DrawString("Thành tiền", new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(710, 380));
+            e.Graphics.DrawString("------------------------------------------------------------------------------------------------------------",
+                                  new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, 410));
+
+            int yPos = 450;
+
+            DataTable dt = hoaDonBLL.getChiTietHoaDonTheoMaHoaDon(maHoaDon);
+            decimal tongTien = 0;
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tenMon = row["TenSanPham"].ToString();
+                    string size = row["Size"].ToString();
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
+                    decimal donGia = Convert.ToInt32(row["DonGia"]);
+                    decimal thanhTien = soLuong * donGia;
+                    tongTien += thanhTien;
+
+                    SizeF stringSize = e.Graphics.MeasureString(tenMon, new Font("Arial", 16, FontStyle.Regular));
+                    int maxItemNameWidth = 200; 
+                    if (stringSize.Width > maxItemNameWidth)
+                    {
+                        int numLines = (int)Math.Floor(stringSize.Width / maxItemNameWidth);
+                        float lineHeight = (stringSize.Height / numLines) + stringSize.Height * 2;
+                        for (int i = 0; i < numLines; i++)
+                        {
+                            RectangleF rect = new RectangleF(new Point(30, yPos), new SizeF(maxItemNameWidth, lineHeight));
+                            e.Graphics.DrawString(tenMon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, rect);
+                            e.Graphics.DrawString(size, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(260, yPos));
+                            e.Graphics.DrawString(soLuong.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(420, yPos));
+                            e.Graphics.DrawString(donGia.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
+                            e.Graphics.DrawString(thanhTien.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
+                            yPos += (int)(lineHeight * numLines);
+                        }    
+                       
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(tenMon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(30, yPos));
+                        e.Graphics.DrawString(size, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(260, yPos));
+                        e.Graphics.DrawString(soLuong.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(420, yPos));
+                        e.Graphics.DrawString(donGia.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
+                        e.Graphics.DrawString(thanhTien.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
+                        yPos += 70;
+                    }                  
+                }
+            }
+            e.Graphics.DrawString("------------------------------------------------------------------------------------------------------------",
+                                  new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, yPos - 25));
+            e.Graphics.DrawString("Tổng: ", new Font("Verdana", 20, FontStyle.Bold), Brushes.Black, new Point(25, yPos));
+            int totalValueX;
+            if (tongTien >= 100000)
+            {
+                totalValueX = 700;
+            }
+            else 
+            {
+                totalValueX = 720;
+            }
+            e.Graphics.DrawString(tongTien.ToString("N0"), new Font("Verdana", 20, FontStyle.Bold), Brushes.Black, new Point(totalValueX, yPos));
+            int pageHeight = e.PageBounds.Height;
+
+            // Đặt yPos của câu cảm ơn gần cuối trang, ví dụ cách 100 đơn vị từ cuối trang
+            int thankYouYPos = pageHeight - 50;
+            e.Graphics.DrawString("Cảm ơn Quý khách và hẹn gặp lại! ", new Font("Arial", 16, FontStyle.Italic), Brushes.Black, new Point(260, thankYouYPos));
         }
     }
 }

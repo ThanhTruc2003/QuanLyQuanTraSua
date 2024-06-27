@@ -15,8 +15,7 @@ namespace DAL
         {
             string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien
                              FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
-                             WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen
-                             ORDER BY CAST(tk.MaTaiKhoan AS INT) ASC";
+                             WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);
@@ -35,7 +34,7 @@ namespace DAL
         public DataTable getUser(string MaQuyen)
         {
             string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
-                             WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen AND q.MaQuyen = '" + MaQuyen + "' ORDER BY CAST(tk.MaTaiKhoan AS INT) ASC";
+                             WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen AND q.MaQuyen = '" + MaQuyen + "'";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);

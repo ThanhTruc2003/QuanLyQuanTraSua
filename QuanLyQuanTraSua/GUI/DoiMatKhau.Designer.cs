@@ -125,6 +125,7 @@
             Name = "FormDoiMatKhau";
             StartPosition = FormStartPosition.Manual;
             Text = "Đổi mật khẩu";
+            Load += FormDoiMatKhau_Load;
             PanelDanhMuc.ResumeLayout(false);
             PanelDanhMuc.PerformLayout();
             ResumeLayout(false);

@@ -80,5 +80,11 @@ namespace QuanLyQuanTraSua
 		{
             this.Dispose();
 		}
-	}
+
+        public void ClearTextBoxes()
+        {
+            txbTaiKhoan.Clear();
+            txbMatKhau.Clear();
+        }
+    }
 }

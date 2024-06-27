@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             lbDanhSachSP = new Label();
             dgvSanPham = new DataGridView();
             MaSanPham = new DataGridViewTextBoxColumn();
@@ -45,7 +45,7 @@
             lbMaHoaDon = new Label();
             lbNguoiLapHoaDon = new Label();
             lbNgay = new Label();
-            label1 = new Label();
+            lbTongTien = new Label();
             txtTongTien = new Label();
             txtNguoiLapHoaDon = new Label();
             txtMaHoaDon = new Label();
@@ -67,14 +67,14 @@
             // 
             dgvSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSanPham.BackgroundColor = Color.White;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(255, 192, 192);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 192, 192);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvSanPham.ColumnHeadersHeight = 29;
             dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvSanPham.Columns.AddRange(new DataGridViewColumn[] { MaSanPham, TenSanPham, Size, SoLuong, DonGia });
@@ -86,13 +86,12 @@
             dgvSanPham.Size = new Size(780, 411);
             dgvSanPham.TabIndex = 4;
             dgvSanPham.TabStop = false;
-            dgvSanPham.CellClick += dgvSanPham_CellClick;
             // 
             // MaSanPham
             // 
             MaSanPham.DataPropertyName = "MaSanPham";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            MaSanPham.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            MaSanPham.DefaultCellStyle = dataGridViewCellStyle2;
             MaSanPham.HeaderText = "Mã sản phẩm";
             MaSanPham.MinimumWidth = 6;
             MaSanPham.Name = "MaSanPham";
@@ -100,8 +99,8 @@
             // TenSanPham
             // 
             TenSanPham.DataPropertyName = "TenSanPham";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            TenSanPham.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            TenSanPham.DefaultCellStyle = dataGridViewCellStyle3;
             TenSanPham.HeaderText = "Tên sản phẩm";
             TenSanPham.MinimumWidth = 6;
             TenSanPham.Name = "TenSanPham";
@@ -109,8 +108,8 @@
             // Size
             // 
             Size.DataPropertyName = "Size";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Size.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Size.DefaultCellStyle = dataGridViewCellStyle4;
             Size.HeaderText = "Size";
             Size.MinimumWidth = 6;
             Size.Name = "Size";
@@ -118,8 +117,8 @@
             // SoLuong
             // 
             SoLuong.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            SoLuong.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            SoLuong.DefaultCellStyle = dataGridViewCellStyle5;
             SoLuong.HeaderText = "Số lượng";
             SoLuong.MinimumWidth = 6;
             SoLuong.Name = "SoLuong";
@@ -127,8 +126,8 @@
             // DonGia
             // 
             DonGia.DataPropertyName = "DonGia";
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            DonGia.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DonGia.DefaultCellStyle = dataGridViewCellStyle6;
             DonGia.HeaderText = "Đơn giá (đồng)";
             DonGia.MinimumWidth = 6;
             DonGia.Name = "DonGia";
@@ -156,7 +155,6 @@
             lbNguoiLapHoaDon.Size = new Size(139, 20);
             lbNguoiLapHoaDon.TabIndex = 5;
             lbNguoiLapHoaDon.Text = "Người lập hóa đơn";
-            lbNguoiLapHoaDon.Click += lbNguoiLapHoaDon_Click;
             // 
             // lbNgay
             // 
@@ -168,16 +166,15 @@
             lbNgay.TabIndex = 5;
             lbNgay.Text = "Thời gian";
             // 
-            // label1
+            // lbTongTien
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(419, 84);
-            label1.Name = "label1";
-            label1.Size = new Size(76, 20);
-            label1.TabIndex = 5;
-            label1.Text = "Tổng tiền";
-            label1.Click += label1_Click;
+            lbTongTien.AutoSize = true;
+            lbTongTien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTongTien.Location = new Point(419, 84);
+            lbTongTien.Name = "lbTongTien";
+            lbTongTien.Size = new Size(76, 20);
+            lbTongTien.TabIndex = 5;
+            lbTongTien.Text = "Tổng tiền";
             // 
             // txtTongTien
             // 
@@ -188,7 +185,6 @@
             txtTongTien.Size = new Size(87, 20);
             txtTongTien.TabIndex = 5;
             txtTongTien.Text = "txtTongTien";
-            txtTongTien.Click += label1_Click;
             // 
             // txtNguoiLapHoaDon
             // 
@@ -199,7 +195,6 @@
             txtNguoiLapHoaDon.Size = new Size(147, 20);
             txtNguoiLapHoaDon.TabIndex = 5;
             txtNguoiLapHoaDon.Text = "txtNguoiLapHoaDon";
-            txtNguoiLapHoaDon.Click += label1_Click;
             // 
             // txtMaHoaDon
             // 
@@ -210,7 +205,6 @@
             txtMaHoaDon.Size = new Size(103, 20);
             txtMaHoaDon.TabIndex = 5;
             txtMaHoaDon.Text = "txtMaHoaDon";
-            txtMaHoaDon.Click += label1_Click;
             // 
             // txtThoiGian
             // 
@@ -221,7 +215,6 @@
             txtThoiGian.Size = new Size(85, 20);
             txtThoiGian.TabIndex = 5;
             txtThoiGian.Text = "txtThoiGian";
-            txtThoiGian.Click += label1_Click;
             // 
             // FormChiTietHoaDon
             // 
@@ -233,7 +226,7 @@
             Controls.Add(txtMaHoaDon);
             Controls.Add(txtNguoiLapHoaDon);
             Controls.Add(txtTongTien);
-            Controls.Add(label1);
+            Controls.Add(lbTongTien);
             Controls.Add(lbNgay);
             Controls.Add(lbNguoiLapHoaDon);
             Controls.Add(lbMaHoaDon);
@@ -243,7 +236,6 @@
             Name = "FormChiTietHoaDon";
             StartPosition = FormStartPosition.CenterScreen;
             TopMost = true;
-            FormClosed += FormQuanLySanPham_FormClosed;
             Load += FormQuanLySanPham_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
             ResumeLayout(false);
@@ -263,7 +255,7 @@
         private Label lbMaHoaDon;
         private Label lbNguoiLapHoaDon;
         private Label lbNgay;
-        private Label label1;
+        private Label lbTongTien;
         private Label txtTongTien;
         private Label txtNguoiLapHoaDon;
         private Label txtMaHoaDon;

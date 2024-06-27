@@ -41,5 +41,11 @@ namespace QuanLyQuanTraSua.GUI
             txtCurrentPassword.Text = "";
             txtNewPassword.Text = "";
         }
+
+        private void FormDoiMatKhau_Load(object sender, EventArgs e)
+        {
+            txtCurrentPassword.PasswordChar = '*';
+            txtNewPassword.PasswordChar = '*';
+        }
     }
 }
