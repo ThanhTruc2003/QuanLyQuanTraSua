@@ -106,8 +106,8 @@ namespace QuanLyQuanTraSua.DAL
 									INNER JOIN CHITIETHOADON CTHD ON SP.MaSanPham = CTHD.MaSanPham
 									INNER JOIN HOADON HD ON CTHD.MaHoaDon = HD.MaHoaDon
 								WHERE 
-									HD.NgayLapHoaDon >= @StartDate 
-									AND HD.NgayLapHoaDon <= @EndDate
+									CONVERT(DATE, HD.NgayLapHoaDon) >= @StartDate 
+									AND CONVERT(DATE, HD.NgayLapHoaDon) <= @EndDate
 								GROUP BY 
 									SP.MaSanPham,
 									SP.TenSanPham
