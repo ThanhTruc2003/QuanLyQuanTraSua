@@ -12,7 +12,7 @@ namespace QuanLyQuanTraSua.DAL
 		private static SqlConnection conn;
 		public static void Start()
 		{
-			conn = new SqlConnection(@"Data Source=DESKTOP-RI07F7I\MSSQLSERVER01;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
+			conn = new SqlConnection(@"Data Source=MSI\SQLEXPRESS;Initial Catalog=QLQUANTRASUA;Integrated Security=True");
 		}
 		public static SqlConnection GetConnection()
 		{

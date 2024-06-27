@@ -22,7 +22,7 @@ namespace QuanLyQuanTraSua.DAL
 		{
 			string query = @"SELECT MaHoaDon, NHANVIEN.HoTen as NguoiLapHoaDon, NgayLapHoaDon, TongTien  
 							FROM HOADON
-							JOIN NHANVIEN ON HOADON.NguoiLapHoaDon = NHANVIEN.MaNhanVien;";
+							JOIN NHANVIEN ON HOADON.NguoiLapHoaDon = NHANVIEN.MaNhanVien ORDER BY MaHoaDon ASC";
 			SqlDataAdapter ada = new SqlDataAdapter(query, conn);
 			DataTable table = new DataTable();
 			ada.Fill(table);
@@ -37,7 +37,7 @@ namespace QuanLyQuanTraSua.DAL
 				string query = @"SELECT MaHoaDon, NHANVIEN.HoTen as NguoiLapHoaDon, NgayLapHoaDon, TongTien  
                          FROM HOADON
                          JOIN NHANVIEN ON HOADON.NguoiLapHoaDon = NHANVIEN.MaNhanVien
-                         WHERE HOADON.MaHoaDon = @MaHoaDon";
+                         WHERE HOADON.MaHoaDon = @MaHoaDon ORDER BY MaHoaDon ASC";
 				SqlCommand cmd = new SqlCommand(query, conn);
 				cmd.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
 				conn.Open();
@@ -72,7 +72,7 @@ namespace QuanLyQuanTraSua.DAL
 							FROM CHITIETHOADON
 							JOIN HOADON ON CHITIETHOADON.MaHoaDon = HOADON.MaHoaDon
 							JOIN SANPHAM ON SANPHAM.MaSanPham = CHITIETHOADON.MaSanPham 
-							WHERE HOADON.MaHoaDon = @MaHoaDon";
+							WHERE HOADON.MaHoaDon = @MaHoaDon ORDER BY CHITIETHOADON.MaHoaDon ASC";
 			SqlDataAdapter ada = new SqlDataAdapter(query, conn);
 			ada.SelectCommand.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
 			DataTable table = new DataTable();

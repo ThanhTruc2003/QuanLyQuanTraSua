@@ -96,7 +96,7 @@ namespace QuanLyQuanTraSua.GUI
             pictureLogo.Image = (Image)resources.GetObject("pictureLogo.Image");
             pictureLogo.Location = new Point(0, 0);
             pictureLogo.Name = "pictureLogo";
-            pictureLogo.Size = new Size(131, 89);
+            pictureLogo.Size = new Size(131, 92);
             pictureLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureLogo.TabIndex = 1;
             pictureLogo.TabStop = false;
@@ -439,6 +439,7 @@ namespace QuanLyQuanTraSua.GUI
             btThongTin.Text = "Thông tin";
             btThongTin.TextAlign = ContentAlignment.MiddleLeft;
             btThongTin.UseVisualStyleBackColor = false;
+            btThongTin.Click += btThongTin_Click;
             // 
             // LogoHeThong
             // 

@@ -18,6 +18,7 @@ namespace QuanLyQuanTraSua.GUI
         private FormThongKe ThongKeDoanhThu;
         private FormThongKeSanPham ThongKeSanPham;
         private FormDoiMatKhau doiMatKhau;
+        private FormThongTin thongTin;
 
         private FormLogin LoginForm;
         public FormTrangChu(FormLogin LoginForm)
@@ -82,6 +83,10 @@ namespace QuanLyQuanTraSua.GUI
             if (doiMatKhau != null)
             {
                 doiMatKhau.Hide();
+            }
+            if (thongTin != null)
+            {
+                thongTin.Hide();
             }
         }
 
@@ -332,6 +337,19 @@ namespace QuanLyQuanTraSua.GUI
             int y = (PanelAnhNen.Height - doiMatKhau.Height) / 2;
             doiMatKhau.Location = new Point(x, y);
             doiMatKhau.Show();
+        }
+
+        private void btThongTin_Click(object sender, EventArgs e)
+        {
+            AnForm();
+            thongTin = new FormThongTin();
+            thongTin.TopLevel = false;
+            PanelAnhNen.BackgroundImage = null;
+            PanelAnhNen.Controls.Add(thongTin);
+            int x = (PanelAnhNen.Width - thongTin.Width) / 2;
+            int y = (PanelAnhNen.Height - thongTin.Height) / 2;
+            thongTin.Location = new Point(x, y);
+            thongTin.Show();
         }
     }
 }
