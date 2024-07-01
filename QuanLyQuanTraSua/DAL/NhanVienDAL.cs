@@ -12,8 +12,10 @@ namespace DAL
 		private SqlConnection conn = ConnectDB.GetConnection();
 		public DataTable getAllEmployee()
         {
-            string query = @"SELECT *
-                             FROM NHANVIEN nv";
+            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, q.TenQuyen
+                             FROM NHANVIEN nv
+                             LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien
+                             LEFT JOIN QUYEN q ON tk.MaQuyen = q.MaQuyen";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
             ada.Fill(table);

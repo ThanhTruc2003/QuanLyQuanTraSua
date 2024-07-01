@@ -49,9 +49,8 @@ namespace QuanLyQuanTraSua.DAL
 					int id = reader.GetInt32(reader.GetOrdinal("MaHoaDon"));
 					string nguoiLap = reader.GetString(reader.GetOrdinal("NguoiLapHoaDon"));
 					DateTime ngayLap = reader.GetDateTime(reader.GetOrdinal("NgayLapHoaDon"));
-					decimal tongTien = reader.GetDecimal(reader.GetOrdinal("TongTien"));
-
-					hoaDon = new HoaDonDTO(id, nguoiLap, ngayLap, tongTien);
+                    decimal tongTien = reader.GetDecimal(reader.GetOrdinal("TongTien"));
+                    hoaDon = new HoaDonDTO(id, nguoiLap, ngayLap, tongTien);
 				}
 				conn.Close();
 				reader.Close();

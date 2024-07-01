@@ -98,18 +98,25 @@ namespace QuanLyQuanTraSua.GUI
 
         private void btXoaNhanVien_Click(object sender, EventArgs e)
         {
-            string nhanvien_selected = Selected();
-            nhanvienBLL = new NhanVienBLL();
-            if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                nhanvienBLL.Delete(nhanvien_selected);
-                dgvNhanVien.DataSource = nhanvienBLL.getAllEmployee();
-                txbMaNhanVien.Clear();
-                txbTenNhanVien.Clear();
-                txbSoDienThoai.Clear();
-                rbNam.Checked = false;
-                rbNu.Checked = false;
-                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string nhanvien_selected = Selected();
+                nhanvienBLL = new NhanVienBLL();
+                if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    nhanvienBLL.Delete(nhanvien_selected);
+                    dgvNhanVien.DataSource = nhanvienBLL.getAllEmployee();
+                    txbMaNhanVien.Clear();
+                    txbTenNhanVien.Clear();
+                    txbSoDienThoai.Clear();
+                    rbNam.Checked = false;
+                    rbNu.Checked = false;
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

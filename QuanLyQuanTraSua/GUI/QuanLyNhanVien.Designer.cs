@@ -35,6 +35,7 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             lbDanhSachNV = new Label();
             lbTimKiemNV = new Label();
             txbTimKiemNV = new TextBox();
@@ -60,6 +61,7 @@
             NgaySinh = new DataGridViewTextBoxColumn();
             GioiTinh = new DataGridViewTextBoxColumn();
             SoDienThoai = new DataGridViewTextBoxColumn();
+            ChucVu = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
             PanelThongTinNV.SuspendLayout();
             SuspendLayout();
@@ -106,7 +108,7 @@
             dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvNhanVien.ColumnHeadersHeight = 29;
             dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvNhanVien.Columns.AddRange(new DataGridViewColumn[] { MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai });
+            dgvNhanVien.Columns.AddRange(new DataGridViewColumn[] { MaNhanVien, HoTen, NgaySinh, GioiTinh, SoDienThoai, ChucVu });
             dgvNhanVien.EnableHeadersVisualStyles = false;
             dgvNhanVien.Location = new Point(12, 90);
             dgvNhanVien.Name = "dgvNhanVien";
@@ -341,6 +343,15 @@
             SoDienThoai.MinimumWidth = 6;
             SoDienThoai.Name = "SoDienThoai";
             // 
+            // ChucVu
+            // 
+            ChucVu.DataPropertyName = "TenQuyen";
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ChucVu.DefaultCellStyle = dataGridViewCellStyle7;
+            ChucVu.HeaderText = "Chức vụ";
+            ChucVu.MinimumWidth = 6;
+            ChucVu.Name = "ChucVu";
+            // 
             // FormQuanLyNhanVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -396,5 +407,6 @@
         private DataGridViewTextBoxColumn NgaySinh;
         private DataGridViewTextBoxColumn GioiTinh;
         private DataGridViewTextBoxColumn SoDienThoai;
+        private DataGridViewTextBoxColumn ChucVu;
     }
 }

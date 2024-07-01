@@ -13,7 +13,7 @@ namespace DAL
 
 		public DataTable getAllUser()
         {
-            string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien
+            string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, nv.HoTen
                              FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
                              WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
@@ -33,7 +33,7 @@ namespace DAL
 
         public DataTable getUser(string MaQuyen)
         {
-            string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, tk.MaNhanVien FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
+            string query = @"SELECT tk.MaTaiKhoan, tk.Username, tk.Password, q.TenQuyen, nv.HoTen FROM TAIKHOAN tk, NHANVIEN nv, QUYEN q
                              WHERE tk.MaNhanVien = nv.MaNhanVien AND tk.MaQuyen = q.MaQuyen AND q.MaQuyen = '" + MaQuyen + "'";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
@@ -43,7 +43,7 @@ namespace DAL
 
         public DataTable getMaNhanVien()
         {
-            string query = "SELECT nv.MaNhanVien FROM NHANVIEN nv LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien " +
+            string query = "SELECT nv.MaNhanVien, nv.HoTen FROM NHANVIEN nv LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien " +
                            " WHERE tk.MaNhanVien IS NULL";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             DataTable table = new DataTable();
@@ -111,17 +111,13 @@ namespace DAL
         {
             string query = @"Update TAIKHOAN set  
                      Username = @Username,
-                     Password = @Password,
-                     MaQuyen = @MaQuyen,
-                     MaNhanVien = @MaNhanVien
+                     Password = @Password
                      where MaTaiKhoan = @MaTaiKhoan";
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@Username", dto_taikhoan.TaiKhoan);
                 cmd.Parameters.AddWithValue("@Password", dto_taikhoan.MatKhau);
-                cmd.Parameters.AddWithValue("@MaQuyen", dto_taikhoan.MaQuyen);
-                cmd.Parameters.AddWithValue("@MaNhanVien", dto_taikhoan.MaNhanVien);
                 cmd.Parameters.AddWithValue("@MaTaiKhoan", dto_taikhoan.MaTaiKhoan);
 
                 try

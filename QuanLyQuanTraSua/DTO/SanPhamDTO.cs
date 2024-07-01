@@ -11,11 +11,11 @@ namespace DTO
         public string MaSanPham { get; set; }
         public string TenSanPham { get; set; }
         public string Size { get; set; }
-        public int DonGia { get; set; }
+        public decimal DonGia { get; set; }
         public string MaDanhMuc { get; set; }
         public string HinhAnh { get; set; }
 
-        public SanPhamDTO(string MaSanPham, string TenSanPham, string Size, int DonGia, string MaDanhMuc, string HinhAnh)
+        public SanPhamDTO(string MaSanPham, string TenSanPham, string Size, decimal DonGia, string MaDanhMuc, string HinhAnh)
         {
             this.MaSanPham = MaSanPham;
             this.TenSanPham = TenSanPham;

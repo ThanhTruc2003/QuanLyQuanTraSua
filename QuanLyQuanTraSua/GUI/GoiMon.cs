@@ -3,6 +3,7 @@ using DAL;
 using DTO;
 using QuanLyQuanTraSua.BLL;
 using QuanLyQuanTraSua.DTO;
+using QuanLyQuanTraSua.Helper;
 using QuanLyQuanTraSua.Properties;
 using System.Data;
 using System.Drawing;
@@ -85,12 +86,12 @@ namespace QuanLyQuanTraSua.GUI
             panel.Click += (sender, e) =>
             {
                 string productName = product["TenSanPham"].ToString();
-                string price = product["DonGia"].ToString();
+                decimal price = Convert.ToInt32(product["DonGia"]);
                 string size = product["Size"].ToString();
                 string maSP = product["MaSanPham"].ToString();
 
                 txbTenMon1.Text = productName;
-                txbDonGia.Text = price + ' ' + 'đ';
+                txbDonGia.Text = Currency.convertToVND(price).ToString().Replace(" ₫", "").Replace(",", "");
                 txbSize.Text = size;
                 lbMaSanPham.Text = maSP;
             };
@@ -122,7 +123,8 @@ namespace QuanLyQuanTraSua.GUI
             nameLabel.Size = new Size(231, 23);
 
             Label priceLabel = new Label();
-            priceLabel.Text = product["DonGia"].ToString() + ' ' + 'đ';
+            decimal price = Convert.ToInt32(product["DonGia"]);
+            priceLabel.Text = Currency.convertToVND(price).ToString().Replace(" ₫", "").Replace(",", "");
             priceLabel.Font = new Font("Segoe UI Semibold", 10, FontStyle.Bold);
             priceLabel.ForeColor = Color.Red;
             priceLabel.Location = new Point(130, 69);
@@ -180,7 +182,7 @@ namespace QuanLyQuanTraSua.GUI
             {
                 if (row.Cells["DonGia"].Value != null && row.Cells["SoLuong"].Value != null)
                 {
-                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value.ToString().Replace(" đ", ""));
+                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value.ToString());
                     int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
                     totalMoney += donGia * soLuong;
                 }
@@ -216,15 +218,35 @@ namespace QuanLyQuanTraSua.GUI
         private void dgvCapNhatMon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            if (index > 0)
+            if (index >= 0) 
             {
                 DataGridViewRow selected = dgvCapNhatMon.Rows[index];
-                lbMaSanPham.Text = selected.Cells[0].Value.ToString();
-                txbTenMon1.Text = selected.Cells[1].Value.ToString();
-                nUDSoLuong.Value = decimal.Parse(selected.Cells[2].Value.ToString());
-                txbDonGia.Text = selected.Cells[3].Value.ToString();
-                txbSize.Text = selected.Cells[4].Value.ToString();
-            }               
+
+                if (selected.Cells[0].Value != null)
+                {
+                    lbMaSanPham.Text = selected.Cells[0].Value.ToString();
+                }
+
+                if (selected.Cells[1].Value != null)
+                {
+                    txbTenMon1.Text = selected.Cells[1].Value.ToString();
+                }
+
+                if (selected.Cells[2].Value != null)
+                {
+                    nUDSoLuong.Value = decimal.Parse(selected.Cells[2].Value.ToString());
+                }
+
+                if (selected.Cells[3].Value != null)
+                {
+                    txbDonGia.Text = selected.Cells[3].Value.ToString();
+                }
+
+                if (selected.Cells[4].Value != null)
+                {
+                    txbSize.Text = selected.Cells[4].Value.ToString();
+                }
+            }
         }
 
         private void btSuaMon_Click(object sender, EventArgs e)
@@ -301,14 +323,14 @@ namespace QuanLyQuanTraSua.GUI
             {
                 if (!row.IsNewRow && row.Cells["DonGia"].Value != null && row.Cells["SoLuong"].Value != null)
                 {
-                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value.ToString().Replace(" đ", ""));
+                    decimal donGia = Convert.ToDecimal(row.Cells["DonGia"].Value.ToString());
                     int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
                     tongTien += donGia * soLuong;
 
                     ChiTietHoaDonDTO chiTietHoaDon = new ChiTietHoaDonDTO();
                     chiTietHoaDon.MaSanPham = (row.Cells["MaSanPham"].Value.ToString());
                     chiTietHoaDon.SoLuong = soLuong;
-                    chiTietHoaDon.DonGia = (int)donGia;
+                    chiTietHoaDon.DonGia = donGia;
 
                     chiTietHoaDonList.Add(chiTietHoaDon);
                 }
@@ -355,15 +377,15 @@ namespace QuanLyQuanTraSua.GUI
             if (Sohoadon >= 100)
             {
                 ValueX = 655;
-            }    
+            }
             else if (Sohoadon >= 10)
             {
                 ValueX = 666;
-            }    
+            }
             else
             {
                 ValueX = 677;
-            }    
+            }
             e.Graphics.DrawString("Số hóa đơn: " + Sohoadon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(ValueX, 250));
             e.Graphics.DrawString("In lúc: " + DateTime.Now.ToString("HH:mm"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(700, 300));
             e.Graphics.DrawString("------------------------------------------------------------------------------------------------------------",
@@ -388,12 +410,13 @@ namespace QuanLyQuanTraSua.GUI
                     string tenMon = row["TenSanPham"].ToString();
                     string size = row["Size"].ToString();
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
-                    decimal donGia = Convert.ToInt32(row["DonGia"]);
+                    decimal donGia = Convert.ToDecimal(row["DonGia"]);
                     decimal thanhTien = soLuong * donGia;
                     tongTien += thanhTien;
+                    
 
                     SizeF stringSize = e.Graphics.MeasureString(tenMon, new Font("Arial", 16, FontStyle.Regular));
-                    int maxItemNameWidth = 200; 
+                    int maxItemNameWidth = 200;
                     if (stringSize.Width > maxItemNameWidth)
                     {
                         int numLines = (int)Math.Floor(stringSize.Width / maxItemNameWidth);
@@ -404,21 +427,21 @@ namespace QuanLyQuanTraSua.GUI
                             e.Graphics.DrawString(tenMon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, rect);
                             e.Graphics.DrawString(size, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(260, yPos));
                             e.Graphics.DrawString(soLuong.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(420, yPos));
-                            e.Graphics.DrawString(donGia.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
-                            e.Graphics.DrawString(thanhTien.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
+                            e.Graphics.DrawString(donGia.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
+                            e.Graphics.DrawString(thanhTien.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
                             yPos += (int)(lineHeight * numLines);
-                        }    
-                       
+                        }
+
                     }
                     else
                     {
                         e.Graphics.DrawString(tenMon, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(30, yPos));
                         e.Graphics.DrawString(size, new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(260, yPos));
                         e.Graphics.DrawString(soLuong.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(420, yPos));
-                        e.Graphics.DrawString(donGia.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
-                        e.Graphics.DrawString(thanhTien.ToString("N0"), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
+                        e.Graphics.DrawString(donGia.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(550, yPos));
+                        e.Graphics.DrawString(thanhTien.ToString(), new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(740, yPos));
                         yPos += 70;
-                    }                  
+                    }
                 }
             }
             e.Graphics.DrawString("------------------------------------------------------------------------------------------------------------",
@@ -429,14 +452,12 @@ namespace QuanLyQuanTraSua.GUI
             {
                 totalValueX = 700;
             }
-            else 
+            else
             {
                 totalValueX = 720;
             }
-            e.Graphics.DrawString(tongTien.ToString("N0"), new Font("Verdana", 20, FontStyle.Bold), Brushes.Black, new Point(totalValueX, yPos));
+            e.Graphics.DrawString(tongTien.ToString(), new Font("Verdana", 20, FontStyle.Bold), Brushes.Black, new Point(totalValueX, yPos));
             int pageHeight = e.PageBounds.Height;
-
-            // Đặt yPos của câu cảm ơn gần cuối trang, ví dụ cách 100 đơn vị từ cuối trang
             int thankYouYPos = pageHeight - 50;
             e.Graphics.DrawString("Cảm ơn Quý khách và hẹn gặp lại! ", new Font("Arial", 16, FontStyle.Italic), Brushes.Black, new Point(260, thankYouYPos));
         }

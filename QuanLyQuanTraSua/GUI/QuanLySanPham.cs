@@ -240,15 +240,22 @@ namespace QuanLyQuanTraSua.GUI
             sanPhamBLL = new SanPhamBLL();
             if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                sanPhamBLL.Delete(sanpham_selected);
-                LoadAllProducts();
-                txbMaSanPham.Clear();
-                txbTenSanPham.Clear();
-                txbSize.Clear();
-                txbDonGia.Clear();
-                pBHinhAnh.Image = null;
-                cbLoaiSanPham.SelectedIndex = -1;
-                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    sanPhamBLL.Delete(sanpham_selected);
+                    LoadAllProducts();
+                    txbMaSanPham.Clear();
+                    txbTenSanPham.Clear();
+                    txbSize.Clear();
+                    txbDonGia.Clear();
+                    pBHinhAnh.Image = null;
+                    cbLoaiSanPham.SelectedIndex = -1;
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }    
         }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace QuanLyQuanTraSua.GUI
@@ -33,11 +34,7 @@ namespace QuanLyQuanTraSua.GUI
             cbLoaiTaiKhoan.Text = LoaiTaiKhoan;
             txbMaNhanVien.Text = MaNhanVien;
 
-            taikhoanBLL = new TaiKhoanBLL();
-            DataTable cb_dt = taikhoanBLL.getTypeUser();
-            cbLoaiTaiKhoan.DataSource = cb_dt;
-            cbLoaiTaiKhoan.DisplayMember = "TenQuyen";
-            cbLoaiTaiKhoan.ValueMember = "MaQuyen";
+            cbLoaiTaiKhoan.Enabled = false;
         }
 
         private void bt_Sua_Click(object sender, EventArgs e)
@@ -49,7 +46,7 @@ namespace QuanLyQuanTraSua.GUI
             }
             else
             {
-                bool isSuccess = taikhoanBLL.Update(new TaiKhoanDTO(txbMaTaiKhoan.Text, txbTaiKhoan.Text, txbMatKhau.Text, cbLoaiTaiKhoan.SelectedValue.ToString(), txbMaNhanVien.Text));
+                bool isSuccess = taikhoanBLL.Update(new TaiKhoanDTO(txbMaTaiKhoan.Text, txbTaiKhoan.Text, txbMatKhau.Text, cbLoaiTaiKhoan.Text, txbMaNhanVien.Text));
                 if (isSuccess)
                 {
                     MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

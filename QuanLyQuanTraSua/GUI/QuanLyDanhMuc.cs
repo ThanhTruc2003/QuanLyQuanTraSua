@@ -91,11 +91,18 @@ namespace QuanLyQuanTraSua.GUI
             danhmucBLL = new DanhMucSanPhamBLL();
             if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                danhmucBLL.Delete(danhmuc_selected);
-                dgvDanhMuc.DataSource = danhmucBLL.getData();
-                txbMaDanhMuc.Clear();
-                txbTenDanhMuc.Clear();
-                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    danhmucBLL.Delete(danhmuc_selected);
+                    dgvDanhMuc.DataSource = danhmucBLL.getData();
+                    txbMaDanhMuc.Clear();
+                    txbTenDanhMuc.Clear();
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("Xóa thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

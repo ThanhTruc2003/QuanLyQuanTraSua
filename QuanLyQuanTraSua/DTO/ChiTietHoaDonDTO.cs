@@ -11,9 +11,9 @@ namespace DTO
         public string MaSanPham { get; set; }
         public string MaHoaDon { get; set; }
         public int SoLuong { get; set; }
-        public int DonGia { get; set; }
+        public decimal DonGia { get; set; }
 
-        public ChiTietHoaDonDTO(string MaSanPham, string MaHoaDon, int SoLuong, int DonGia)
+        public ChiTietHoaDonDTO(string MaSanPham, string MaHoaDon, int SoLuong, decimal DonGia)
         {
             this.MaSanPham = MaSanPham;
             this.MaHoaDon = MaHoaDon;
