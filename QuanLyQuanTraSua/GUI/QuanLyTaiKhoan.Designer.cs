@@ -29,14 +29,19 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLyTaiKhoan));
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLyTaiKhoan));
             lbDanhSachNV = new Label();
             dgvTaiKhoan = new DataGridView();
+            MaTaiKhoan = new DataGridViewTextBoxColumn();
+            Username = new DataGridViewTextBoxColumn();
+            Password = new DataGridViewTextBoxColumn();
+            LoaiTaiKhoan = new DataGridViewTextBoxColumn();
+            MaNhanVien = new DataGridViewTextBoxColumn();
             lbThongTinTK = new Label();
             PanelThongTinTK = new Panel();
             cbMaNhanVien = new ComboBox();
@@ -54,11 +59,6 @@
             btXoaTaiKhoan = new Button();
             lbTimKiemTK = new Label();
             cbLoaiTK = new ComboBox();
-            MaTaiKhoan = new DataGridViewTextBoxColumn();
-            Username = new DataGridViewTextBoxColumn();
-            Password = new DataGridViewTextBoxColumn();
-            LoaiTaiKhoan = new DataGridViewTextBoxColumn();
-            MaNhanVien = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvTaiKhoan).BeginInit();
             PanelThongTinTK.SuspendLayout();
             SuspendLayout();
@@ -96,6 +96,51 @@
             dgvTaiKhoan.Size = new Size(1238, 155);
             dgvTaiKhoan.TabIndex = 6;
             dgvTaiKhoan.CellClick += dgvTaiKhoan_CellClick;
+            // 
+            // MaTaiKhoan
+            // 
+            MaTaiKhoan.DataPropertyName = "MaTaiKhoan";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            MaTaiKhoan.DefaultCellStyle = dataGridViewCellStyle2;
+            MaTaiKhoan.HeaderText = "Mã tài khoản";
+            MaTaiKhoan.MinimumWidth = 6;
+            MaTaiKhoan.Name = "MaTaiKhoan";
+            // 
+            // Username
+            // 
+            Username.DataPropertyName = "Username";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Username.DefaultCellStyle = dataGridViewCellStyle3;
+            Username.HeaderText = "Tài khoản";
+            Username.MinimumWidth = 6;
+            Username.Name = "Username";
+            // 
+            // Password
+            // 
+            Password.DataPropertyName = "Password";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Password.DefaultCellStyle = dataGridViewCellStyle4;
+            Password.HeaderText = "Mật khẩu";
+            Password.MinimumWidth = 6;
+            Password.Name = "Password";
+            // 
+            // LoaiTaiKhoan
+            // 
+            LoaiTaiKhoan.DataPropertyName = "TenQuyen";
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            LoaiTaiKhoan.DefaultCellStyle = dataGridViewCellStyle5;
+            LoaiTaiKhoan.HeaderText = "Loại tài khoản";
+            LoaiTaiKhoan.MinimumWidth = 6;
+            LoaiTaiKhoan.Name = "LoaiTaiKhoan";
+            // 
+            // MaNhanVien
+            // 
+            MaNhanVien.DataPropertyName = "HoTen";
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            MaNhanVien.DefaultCellStyle = dataGridViewCellStyle6;
+            MaNhanVien.HeaderText = "Nhân viên";
+            MaNhanVien.MinimumWidth = 6;
+            MaNhanVien.Name = "MaNhanVien";
             // 
             // lbThongTinTK
             // 
@@ -276,51 +321,6 @@
             cbLoaiTK.Size = new Size(238, 28);
             cbLoaiTK.TabIndex = 27;
             cbLoaiTK.SelectedIndexChanged += cbLoaiTK_SelectedIndexChanged;
-            // 
-            // MaTaiKhoan
-            // 
-            MaTaiKhoan.DataPropertyName = "MaTaiKhoan";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            MaTaiKhoan.DefaultCellStyle = dataGridViewCellStyle2;
-            MaTaiKhoan.HeaderText = "Mã tài khoản";
-            MaTaiKhoan.MinimumWidth = 6;
-            MaTaiKhoan.Name = "MaTaiKhoan";
-            // 
-            // Username
-            // 
-            Username.DataPropertyName = "Username";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Username.DefaultCellStyle = dataGridViewCellStyle3;
-            Username.HeaderText = "Tài khoản";
-            Username.MinimumWidth = 6;
-            Username.Name = "Username";
-            // 
-            // Password
-            // 
-            Password.DataPropertyName = "Password";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            Password.DefaultCellStyle = dataGridViewCellStyle4;
-            Password.HeaderText = "Mật khẩu";
-            Password.MinimumWidth = 6;
-            Password.Name = "Password";
-            // 
-            // LoaiTaiKhoan
-            // 
-            LoaiTaiKhoan.DataPropertyName = "TenQuyen";
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            LoaiTaiKhoan.DefaultCellStyle = dataGridViewCellStyle5;
-            LoaiTaiKhoan.HeaderText = "Loại tài khoản";
-            LoaiTaiKhoan.MinimumWidth = 6;
-            LoaiTaiKhoan.Name = "LoaiTaiKhoan";
-            // 
-            // MaNhanVien
-            // 
-            MaNhanVien.DataPropertyName = "HoTen";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            MaNhanVien.DefaultCellStyle = dataGridViewCellStyle6;
-            MaNhanVien.HeaderText = "Nhân viên";
-            MaNhanVien.MinimumWidth = 6;
-            MaNhanVien.Name = "MaNhanVien";
             // 
             // FormQuanLyTaiKhoan
             // 

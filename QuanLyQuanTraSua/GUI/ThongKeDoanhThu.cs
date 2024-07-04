@@ -84,7 +84,7 @@ namespace QuanLyQuanTraSua.GUI
             foreach (ThongKeDoanhThu t in thongKe)
             {
                 series.Points.AddXY(t.Ngay.ToString("dd/MM/yyyy"), t.DoanhThu);
-                series.Points[series.Points.Count - 1].Label = Currency.convertToVND(t.DoanhThu); // Hiển thị số liệu doanh thu
+                series.Points[series.Points.Count - 1].Label = t.DoanhThu.ToString(); // Hiển thị số liệu doanh thu
             }
 
             // Thêm Series vào Chart
@@ -104,7 +104,7 @@ namespace QuanLyQuanTraSua.GUI
             foreach (ThongKeDoanhThu t in thongKe)
             {
                 series.Points.AddXY("Tháng " + t.Thang, t.DoanhThu);
-                series.Points[series.Points.Count - 1].Label = Currency.convertToVND(t.DoanhThu); // Hiển thị số liệu doanh thu
+                series.Points[series.Points.Count - 1].Label = t.DoanhThu.ToString(); // Hiển thị số liệu doanh thu
             }
 
             // Thêm Series vào Chart

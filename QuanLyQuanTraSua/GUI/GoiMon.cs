@@ -448,7 +448,7 @@ namespace QuanLyQuanTraSua.GUI
                                   new Font("Arial", 16, FontStyle.Regular), Brushes.Black, new Point(25, yPos - 25));
             e.Graphics.DrawString("Tổng: ", new Font("Verdana", 20, FontStyle.Bold), Brushes.Black, new Point(25, yPos));
             int totalValueX;
-            if (tongTien >= 100000)
+            if (tongTien >= 100)
             {
                 totalValueX = 700;
             }

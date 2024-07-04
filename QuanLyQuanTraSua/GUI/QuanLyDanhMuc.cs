@@ -131,7 +131,6 @@ namespace QuanLyQuanTraSua.GUI
                 if (isSuccess == true)
                 {
                     MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    danhmucBLL = new DanhMucSanPhamBLL();
                     dgvDanhMuc.DataSource = danhmucBLL.getData();
                 }
                 else

@@ -12,7 +12,7 @@ namespace DAL
 		private SqlConnection conn = ConnectDB.GetConnection();
 		public DataTable getAllEmployee()
         {
-            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, q.TenQuyen
+            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, q.TenQuyen 
                              FROM NHANVIEN nv
                              LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien
                              LEFT JOIN QUYEN q ON tk.MaQuyen = q.MaQuyen";
@@ -24,8 +24,10 @@ namespace DAL
 
         public DataTable getDataByName(string TenNhanVien)
         {
-            string query = @"SELECT *
+            string query = @"SELECT nv.MaNhanVien, nv.HoTen, nv.NgaySinh, nv.GioiTinh, nv.SoDienThoai, q.TenQuyen 
                              FROM NHANVIEN nv
+                             LEFT JOIN TAIKHOAN tk ON nv.MaNhanVien = tk.MaNhanVien
+                             LEFT JOIN QUYEN q ON tk.MaQuyen = q.MaQuyen
                              WHERE nv.HoTen LIKE @TenNhanVien";
             SqlDataAdapter ada = new SqlDataAdapter(query, conn);
             ada.SelectCommand.Parameters.AddWithValue("@TenNhanVien", "%" + TenNhanVien + "%");
